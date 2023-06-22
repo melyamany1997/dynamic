@@ -1,0 +1,201 @@
+<!-- {%- from "templates/print_formats/standard_macros.html" import add_header -%} -->
+
+{% set customer_doc = frappe.get_doc("Customer",doc.customer)%}
+{% if doc.contact_person%}
+{% set cst_contact = frappe.get_doc("Contact",doc.contact_person) %}
+{%else%}
+{% set cst_contact = 0 %}
+{%endif%}
+
+
+
+{% if letter_head and not no_letterhead -%}
+{% if print_settings.repeat_header_footer %}
+   <br>  <div class="letter-head">{{ letter_head }}</div>
+{%- endif %}{%- endif %}
+
+
+<div class="container-fluid">
+    <!-- header -->
+    <div class="row">
+        <div class="col-sm-7 col-xs-7" style="text-align: right;font-size: 17px;"><b>{{_("شركة فيوتشر وود لتجارة وتصنيع الأخشاب")}}</b></div>
+        <div class="col-sm-1 col-xs-1" style="text-align: center;"><b></b></div>
+                
+        <div class="col-sm-4 col-xs-4 mt-1" style=""> 
+            <img  src="/assets/dynamic/images/future.jpeg" width="300" height="100">
+        </div>
+        
+    </div>
+    <!-- second row -->
+    <div class="row mt-1">
+        <div class="col-sm-5 col-xs-5  mt-1"><b>{{_("فاتورة")}}</b></div>
+        <div class="col-sm-3 col-xs-3  mt-1" style="text-align: center;"><b style="font-weight: bold;font-size: 18px;">{{_("")}}</b>
+            <br>
+            <p style="border: 2px solid black;padding: 2px;">{{doc.name}}</p></div>
+        <div class="col-sm-4 col-xs-4  mt-1"></div>
+    </div>
+
+    <!-- third rowstyle="background-color: #b3b3b3;" -->
+    <div class="row mt-1">
+        <div class="col-sm-3 col-xs-3  mt-1"><b >{{_("أسم العميل :")}}</b></div>
+        <div class="col-sm-6 col-xs-6  mt-1" style="text-align: right;background-color: #b3b3b3;"><b style="">{{doc.customer}}</b></div>
+
+        <div class="col-sm-3 col-xs-3  mt-1"></div>
+    </div>
+
+     <!-- four row -->
+     <div class="row mt-1">
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{_("كود العميل :")}}</b></div>
+        <div class="col-sm-3 col-xs-3  mt-1" style="text-align: right;"><b style="">{{doc.customer}}</b></div>
+        <div class="col-sm-3 col-xs-3  mt-1" style="text-align: right;"><b style="">{{("تاريخ الفاتورة")}}</b></div>
+
+        <div class="col-sm-3 col-xs-3  mt-1">{{doc.posting_date}}</div>
+    </div>
+
+
+
+
+
+    <!-- items -->
+    <div class="row mt-1">
+        <div class=" col-sm-12 col-xs-12 margin-top margin-bottom" >
+            <table class="table " style="border-collapse:collapse;">
+                <tr style="background-color: #b3b3b3;">
+                    <th style="background-color: #851212;">{{_("م")}}</th>
+                    <th style="width:20%">{{_("كود الصنف")}}</th>
+                    <th style="width:30%">{{_("أسم الصنف")}}</th>
+                    <th>{{_("الكمية")}}</th>
+                    <th>{{_("السعر")}}</th>
+                    <th>{{_("الأجمالي")}}</th>
+                    <!-- <th>سعر بعد الخصم</th>
+                    <th>الأجمالى</th> -->
+                </tr>
+                {% for item in doc.items %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.item_code }}</td>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.qty}}</td>
+                    <td>{{ item.rate or 0}}</td>
+                    <td>{{ item.amount}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+
+    
+    
+    </div>
+    <!-- total -->
+    <div class="row">
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("المدفوع")}}
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.total_advance or 0,currency=doc.currency) }}
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("ألأجمالي")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            <p style="border: 2px solid black;padding: 2px;">  {{ frappe.utils.fmt_money(doc.total or 0,currency=doc.currency) }}</p>
+
+           
+            <!-- {{ doc.base_total }} -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Total Tax")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            <p style="border: 2px solid black;padding: 2px;"> {{ frappe.utils.fmt_money(doc.total_taxes_and_charges or 0,currency=doc.currency) }}</p>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div class="col-sm-3 col-xs-3 mt-1"  >
+            <p style="">  {{_("Discount")}}:</p>
+           
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            <p style="border: 2px solid black;padding: 2px;"> {{ frappe.utils.fmt_money(doc.discount_amount or 0,currency=doc.currency) }} </p>
+           
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+                
+        </div>
+
+        <div  class="col-sm-3 col-xs-3 mt-1" >
+            <p style=""> {{_("صافي القيمة")}}:</p>
+
+
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            <p style="border: 2px solid black;padding: 2px;">  {{ frappe.utils.fmt_money(doc.grand_total or 0,currency=doc.currency) }}</p>
+           
+        </div>
+
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8 col-xs-8 mt-1" style=""> 
+            <p style="border: 2px solid black;padding: 2px;">
+                {{doc.in_words}} </p>
+           
+        </div>
+        <div class="col-sm-4 col-xs-4 mt-1" style="text-align: left;"> 
+            <img height="70" src="/assets/dynamic/images/future_qrc.jpeg" width="80">
+
+           
+        </div>
+    </div>
+ <!--fff-->
+    <div class="row mt-2">
+        <div class="col-12">
+            <hr style="border: 1px solid #070707;border-radius: 1px;margin-top: 1px;">
+        </div>
+        <div class="col-12">
+            <span>{{_("ملاحظات")}}</span>
+        </div>
+        <div class="col-sm-12 col-xs-12 mt-1" style="">                
+            <p style="text-align: center;">
+                {{_(" الادارة : 01066662975/  المصنع : 01050843445/ المبيعات : 01050843448")}} 
+            </p>
+        </div>
+        <div class="col-sm-12 col-xs-12 mt-1" style="">                
+            <p style="text-align: center;">
+                {{_(" العنوان: كورنيش النيل الشرقي بجوار مستشفي")}} 
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

@@ -1,0 +1,624 @@
+{
+ "actions": [],
+ "autoname": "field:role_name",
+ "creation": "2020-12-03 17:18:02.724118",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "role_name",
+  "amended_from",
+  "working_details_section",
+  "type",
+  "total_working_days_per_month",
+  "total_working_hours_per_month",
+  "column_break_6",
+  "working_type",
+  "total_working_hours_per_day",
+  "daily_workers_section",
+  "daily_workers",
+  "working_days",
+  "against_weekend",
+  "section_break_6",
+  "enable_permission_rule",
+  "permission_rule",
+  "max_permission_minutes",
+  "max_permissions_count",
+  "max_permission_minute_per_once",
+  "column_break_200",
+  "deduct_lates_permission",
+  "deduct_less_permission",
+  "late_roles_section",
+  "enable_late_penality",
+  "late_penalty_factor_by_date",
+  "salary_componat_for_late",
+  "salary_component_for_late_penalty",
+  "caclulate_deduction_in_working_on_holiday",
+  "caclulate_deduction_in_working_on_weekend",
+  "late_role_table",
+  "absent_rule_section",
+  "enable_absent_penality",
+  "absent_rules",
+  "absent__component",
+  "column_break_20",
+  "continuous_absent_penality",
+  "absent_rate",
+  "abset_penalty_component",
+  "overtime_section",
+  "enable_overtime",
+  "overtime_salary_component",
+  "staying_up_late_salary_component",
+  "morning_overtime_start",
+  "evening_overtime_start",
+  "morning_overtime_factor",
+  "overtime_factor_in_holidays",
+  "max_overtime_hours_in_weekend",
+  "max_overtime_hours_in_holiday",
+  "overtime_rules",
+  "calculate_early_in",
+  "deduct_overtime_from_delays",
+  "calculate_all_day_in_holiday",
+  "calculate_all_day_in_weekend",
+  "holiday_overtime_to_leave_balance",
+  "weekend_overtime_to_leave_balance",
+  "normal_overtime_to_leave_balance",
+  "column_break_42",
+  "need_to_approve",
+  "overtime_in_holiday_salary_component",
+  "overtime_in_weekend_salary_component",
+  "morning_overtime_end",
+  "evening_overtime_end",
+  "overtime_factor_in_weekend",
+  "max_overtime_hours_per_day",
+  "evening_overtime_factor",
+  "max_overtime_hours_per_month",
+  "less_time_setting_section",
+  "enable_less_time_factor_penality",
+  "less_time_factor",
+  "less_time_salary_component",
+  "less_rules",
+  "column_break_60",
+  "enable_less_time_penalty",
+  "less_time_penalty_factor",
+  "less_time_penalty_salary_component",
+  "less_penalty_factor_rules",
+  "forget_fingerprint_penality_settings_section",
+  "enable_fingerprint_penality",
+  "fingerprint_factors",
+  "column_break_74",
+  "fingerprint_forgetten_penlaity_salary_component",
+  "fingerprint_forgetten_out_penality",
+  "hold_details_section",
+  "hold_salary_component"
+ ],
+ "fields": [
+  {
+   "fieldname": "role_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rule Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "absent_rate",
+   "fieldtype": "Float",
+   "label": "Absent Rate"
+  },
+  {
+   "fieldname": "overtime_salary_component",
+   "fieldtype": "Link",
+   "label": "Overtime Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "permission_rule",
+   "fieldtype": "Table",
+   "label": "Permission Rule",
+   "options": "Attendence Permission Rule Table"
+  },
+  {
+   "fieldname": "max_permission_minutes",
+   "fieldtype": "Float",
+   "label": "Max Permission minutes"
+  },
+  {
+   "fieldname": "max_permissions_count",
+   "fieldtype": "Float",
+   "label": "Max permissions Count"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "late_roles_section",
+   "fieldtype": "Section Break",
+   "label": "Late Rules "
+  },
+  {
+   "fieldname": "late_role_table",
+   "fieldtype": "Table",
+   "label": "Late Rule Table",
+   "options": "Late Attendance Componant Table"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type ",
+   "options": "Monthly\nDaily",
+   "reqd": 1
+  },
+  {
+   "fieldname": "salary_componat_for_late",
+   "fieldtype": "Link",
+   "label": "Salary Componat for Late",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "salary_component_for_late_penalty",
+   "fieldtype": "Link",
+   "label": "Salary Component For Late Penalty",
+   "options": "Salary Component"
+  },
+  {
+   "default": "0",
+   "fieldname": "caclulate_deduction_in_working_on_holiday",
+   "fieldtype": "Check",
+   "label": "Caclulate deduction in Working on holiday"
+  },
+  {
+   "default": "0",
+   "fieldname": "caclulate_deduction_in_working_on_weekend",
+   "fieldtype": "Check",
+   "label": "Caclulate deduction in Working on Weekend"
+  },
+  {
+   "fieldname": "late_penalty_factor_by_date",
+   "fieldtype": "Int",
+   "label": "Late Penalty Factor (By Date)"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "absent_rule_section",
+   "fieldtype": "Section Break",
+   "label": "Absent Rule"
+  },
+  {
+   "fieldname": "absent__component",
+   "fieldtype": "Link",
+   "label": "Absent  Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "abset_penalty_component",
+   "fieldtype": "Link",
+   "label": "Absent Penalty Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "absent_rules",
+   "fieldtype": "Link",
+   "label": "Absent Rules",
+   "options": "Absent Rules"
+  },
+  {
+   "fieldname": "fingerprint_forgetten_penlaity_salary_component",
+   "fieldtype": "Link",
+   "label": "Fingerprint Forgetten penlaity Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "default": "1",
+   "fieldname": "fingerprint_forgetten_out_penality",
+   "fieldtype": "Float",
+   "label": "Fingerprint Forgotten  Penalty"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_permission_minute_per_once",
+   "fieldtype": "Float",
+   "label": "Max Permission minute per once"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break",
+   "label": "Permission Setting"
+  },
+  {
+   "default": "Shift",
+   "fieldname": "working_type",
+   "fieldtype": "Select",
+   "label": "Working Type",
+   "options": "Shift\nTarget Hours",
+   "reqd": 1
+  },
+  {
+   "default": "8",
+   "fieldname": "total_working_hours_per_day",
+   "fieldtype": "Float",
+   "label": "Total Working Hours Per Day",
+   "reqd": 1
+  },
+  {
+   "default": "208",
+   "fieldname": "total_working_hours_per_month",
+   "fieldtype": "Float",
+   "label": "Total Working Hours Per Month",
+   "reqd": 1
+  },
+  {
+   "default": "30",
+   "fieldname": "total_working_days_per_month",
+   "fieldtype": "Float",
+   "label": "Total Working Days Per Month",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "overtime_section",
+   "fieldtype": "Section Break",
+   "label": "Overtime"
+  },
+  {
+   "fieldname": "staying_up_late_salary_component",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Staying up late Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "default": "7:00:00",
+   "fieldname": "morning_overtime_start",
+   "fieldtype": "Time",
+   "label": "Morning Overtime Start"
+  },
+  {
+   "default": "19:00:00",
+   "fieldname": "evening_overtime_start",
+   "fieldtype": "Time",
+   "label": "Evening Overtime Start"
+  },
+  {
+   "default": "0",
+   "fieldname": "morning_overtime_factor",
+   "fieldtype": "Float",
+   "label": "Morning Overtime Factor"
+  },
+  {
+   "fieldname": "column_break_42",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "overtime_in_holiday_salary_component",
+   "fieldtype": "Link",
+   "label": "Overtime in Holiday Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "overtime_in_weekend_salary_component",
+   "fieldtype": "Link",
+   "label": "Overtime in Weekend Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "default": "18:59:59",
+   "fieldname": "morning_overtime_end",
+   "fieldtype": "Time",
+   "label": "Morning Overtime End"
+  },
+  {
+   "default": "06:59:59",
+   "fieldname": "evening_overtime_end",
+   "fieldtype": "Time",
+   "label": "Evening Overtime End"
+  },
+  {
+   "default": "1.35",
+   "fieldname": "evening_overtime_factor",
+   "fieldtype": "Float",
+   "label": "Evening Overtime Factor"
+  },
+  {
+   "fieldname": "overtime_rules",
+   "fieldtype": "Table",
+   "label": "Overtime Rules",
+   "options": "Overtime Rules"
+  },
+  {
+   "default": "1",
+   "fieldname": "calculate_early_in",
+   "fieldtype": "Check",
+   "label": "Calculate Early IN "
+  },
+  {
+   "default": "2",
+   "fieldname": "overtime_factor_in_weekend",
+   "fieldtype": "Float",
+   "label": "Overtime factor in Weekend "
+  },
+  {
+   "default": "2",
+   "fieldname": "overtime_factor_in_holidays",
+   "fieldtype": "Float",
+   "label": "Overtime factor in Holidays "
+  },
+  {
+   "default": "0",
+   "fieldname": "deduct_overtime_from_delays",
+   "fieldtype": "Check",
+   "label": "Deduct Overtime from Delays"
+  },
+  {
+   "default": "0",
+   "fieldname": "calculate_all_day_in_weekend",
+   "fieldtype": "Check",
+   "label": "Calculate all day in weekend"
+  },
+  {
+   "default": "0",
+   "fieldname": "calculate_all_day_in_holiday",
+   "fieldtype": "Check",
+   "label": "Calculate all day in Holiday"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_overtime_hours_in_holiday",
+   "fieldtype": "Float",
+   "label": "Max Overtime hours in Holiday"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_overtime_hours_in_weekend",
+   "fieldtype": "Float",
+   "label": "Max Overtime hours in weekend"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_overtime_hours_per_day",
+   "fieldtype": "Float",
+   "label": "Max Overtime hours per day"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_overtime_hours_per_month",
+   "fieldtype": "Float",
+   "label": "Max Overtime hours per Month"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Attendance Rule",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "working_details_section",
+   "fieldtype": "Section Break",
+   "label": "Working Details"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "less_time_setting_section",
+   "fieldtype": "Section Break",
+   "label": "Less Time Setting"
+  },
+  {
+   "fieldname": "less_time_salary_component",
+   "fieldtype": "Link",
+   "label": "Less Time Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "less_time_factor",
+   "fieldtype": "Float",
+   "label": "Less Time Factor"
+  },
+  {
+   "fieldname": "less_rules",
+   "fieldtype": "Table",
+   "label": "Less Factor Rules",
+   "options": "Less Factor Table"
+  },
+  {
+   "depends_on": "eval:doc.enable_less_time_factor_penality ==1",
+   "fieldname": "column_break_60",
+   "fieldtype": "Column Break",
+   "label": "Less Time Penalty"
+  },
+  {
+   "collapsible": 1,
+   "default": "0",
+   "fieldname": "enable_permission_rule",
+   "fieldtype": "Check",
+   "label": "Enable Permission Rule"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_late_penality",
+   "fieldtype": "Check",
+   "label": "Enable Late Rules"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_absent_penality",
+   "fieldtype": "Check",
+   "label": "Enable Absent Rules"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_overtime",
+   "fieldtype": "Check",
+   "label": "Enable Overtime"
+  },
+  {
+   "fieldname": "forget_fingerprint_penality_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Forget Fingerprint Penality Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_fingerprint_penality",
+   "fieldtype": "Check",
+   "label": "Enable Fingerprint Penality"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "daily_workers_section",
+   "fieldtype": "Section Break",
+   "label": "Daily Workers"
+  },
+  {
+   "default": "0",
+   "fieldname": "daily_workers",
+   "fieldtype": "Check",
+   "label": "Daily Workers"
+  },
+  {
+   "default": "25",
+   "depends_on": "daily_workers",
+   "fieldname": "working_days",
+   "fieldtype": "Int",
+   "label": "Working Days"
+  },
+  {
+   "default": "5",
+   "depends_on": "daily_workers",
+   "fieldname": "against_weekend",
+   "fieldtype": "Int",
+   "label": "Against Weekend"
+  },
+  {
+   "default": "0",
+   "fieldname": "need_to_approve",
+   "fieldtype": "Check",
+   "label": "Need to Approve"
+  },
+  {
+   "fieldname": "hold_details_section",
+   "fieldtype": "Section Break",
+   "label": "Hold Details"
+  },
+  {
+   "fieldname": "hold_salary_component",
+   "fieldtype": "Link",
+   "label": "Hold Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "default": "0",
+   "fieldname": "continuous_absent_penality",
+   "fieldtype": "Check",
+   "label": "Continuous Absent Penality"
+  },
+  {
+   "default": "0",
+   "fieldname": "holiday_overtime_to_leave_balance",
+   "fieldtype": "Check",
+   "label": "Holiday Overtime to Leave Balance"
+  },
+  {
+   "default": "0",
+   "fieldname": "weekend_overtime_to_leave_balance",
+   "fieldtype": "Check",
+   "label": "Weekend Overtime to Leave Balance"
+  },
+  {
+   "default": "0",
+   "fieldname": "normal_overtime_to_leave_balance",
+   "fieldtype": "Check",
+   "label": "Normal Overtime to Leave Balance"
+  },
+  {
+   "fieldname": "column_break_74",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.enable_fingerprint_penality ==1",
+   "fieldname": "fingerprint_factors",
+   "fieldtype": "Table",
+   "label": "Fingerprint IN/OUT Factors",
+   "options": "Fingerprint Penalty Detail"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_less_time_penalty",
+   "fieldtype": "Check",
+   "label": "Enable Less Time Penalty"
+  },
+  {
+   "fieldname": "less_time_penalty_salary_component",
+   "fieldtype": "Link",
+   "label": "Less Time Penalty Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "less_time_penalty_factor",
+   "fieldtype": "Float",
+   "label": "Less Time Penalty Factor"
+  },
+  {
+   "fieldname": "less_penalty_factor_rules",
+   "fieldtype": "Table",
+   "label": "Less Penalty Factor Rules",
+   "options": "Less Time Penalty Detail"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_less_time_factor_penality",
+   "fieldtype": "Check",
+   "label": "Enable Less Time Rule "
+  },
+  {
+   "default": "0",
+   "fieldname": "deduct_lates_permission",
+   "fieldtype": "Check",
+   "label": "Deduct late minutes From Permissions"
+  },
+  {
+   "fieldname": "column_break_200",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "deduct_less_permission",
+   "fieldtype": "Check",
+   "label": "Deduct Less time minutes From Permissions"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-04 10:35:26.789568",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Attendance Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

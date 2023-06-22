@@ -1,0 +1,100 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<style>
+
+</style>
+<div class="body">
+    <div id="header-html" class="hidden-pdf">
+        <img src="/assets/dynamic/images/teba_head.png" />
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-xs-12" style="text-align: center;">
+            <h2>{{_("الفاتورة")}}</h2>
+        </div>
+        <div class="col-xs-12" style="text-align: center;">
+            <small>{{doc.name}}</small>
+        </div>
+    </div>
+
+        
+
+    
+    <div class="row margin-bottom">
+        <div class="col-xs-12" style="text-align: right;margin-top:10px ;">
+            {{_(" المطلوب من السادة")}} : {{'.'*80}}
+       </div>
+       <div class="col-xs-12" style="text-align: right;margin-top:10px ;">
+        {{_("   العنوان")}} : {{'.'*100}}
+   </div>
+
+
+   <div class="row margin-bottom">
+    <div class="col-xs-12" style="text-align: right;margin-top:10px ;">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <!-- <th scope="col">{{_("م")}}</th> -->
+                <th scope="col" style="width:10%;">{{_("رقم أذن التسليم")}}</th>
+                <th scope="col" style="width:20%;">{{_("الصنف")}}</th>
+                <th scope="col" style="width:10%;">{{_("الكمية بالطن")}}</th>
+                <th scope="col" style="width:10%;">{{_("سعر الطن")}}</th>
+                <th scope="col" style="width:30%;">{{_("البيان")}}</th>
+                <th scope="col" style="width:15%;">{{_("جنيه مصري")}}</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for row in doc.items%}
+                <tr>
+                    <td>{{row.idx}}</td>
+                    <td>{{row.item_code}}</td>
+                    <td>{{row.qty}}</td>
+                    <td>{{row.rate}}</td>
+                    <td>{{row.description}}</td>
+                    <td>{{row.base_amount}}</td>
+                </tr>
+                {% endfor%}
+              
+        </tbody>
+    </table>
+   </div>
+  
+    </div>
+
+    <div class="row margin-bottom">
+        <div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            {{_("الحسابات")}}
+        </div>
+        <div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            {{_("المراجعة")}}
+        </div>
+        <div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            {{_("يعتمد")}}
+        </div>
+        <div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            ({{'.'*20}})
+        </div><div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            ({{'.'*20}})
+        </div><div class="col-xs-4" style="text-align: center;margin-top:10px ;">
+            ({{'.'*20}})
+        </div>
+        
+    </div>
+
+
+</div>
+<!-- end body -->
+
+
+
+          
+           
+            
+
+  
+
+  
+
+    <div id="footer-html" class="">
+        <img src="/assets/dynamic/images/teba_footer.png" /> 
+    </div>
+
+</div>

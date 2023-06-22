@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:delegate_name",
+ "creation": "2022-08-02 16:38:52.712960",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "delegate_name",
+  "delegate_no",
+  "delegate_id",
+  "column_break_4",
+  "customer"
+ ],
+ "fields": [
+  {
+   "fieldname": "delegate_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Delegate Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "delegate_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Delegate No.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delegate_id",
+   "fieldtype": "Data",
+   "label": "Delegate ID"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-03 09:41:34.106363",
+ "modified_by": "Administrator",
+ "module": "Hardware Installations",
+ "name": "Customer Delegate",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

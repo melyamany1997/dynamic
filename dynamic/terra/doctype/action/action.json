@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "ACT.######",
+ "creation": "2022-06-22 16:59:24.979749",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "type",
+  "action_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nIndoor\nOut door",
+   "reqd": 1
+  },
+  {
+   "fieldname": "action_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Action Name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-11 13:20:01.316120",
+ "modified_by": "Administrator",
+ "module": "Terra",
+ "name": "Action",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "action_name,type",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "action_name"
+}

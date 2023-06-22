@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-08-24 18:41:15.478352",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_person",
+  "invocie",
+  "date",
+  "item__group",
+  "commission_template",
+  "base_on",
+  "amount",
+  "payed",
+  "from_date",
+  "to_date",
+  "commission_percent",
+  "commission_amount",
+  "invoice_qty",
+  "invocie_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_person",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Sales Person ",
+   "options": "Sales Person"
+  },
+  {
+   "fieldname": "invocie",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "invocie",
+   "options": "Sales Invoice"
+  },
+  {
+   "fetch_from": "invocie.posting_date",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "item__group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item  Group",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "commission_template",
+   "fieldtype": "Link",
+   "label": " Commission Template",
+   "options": "Commission Template"
+  },
+  {
+   "fetch_from": "commission_template.base_on",
+   "fieldname": "base_on",
+   "fieldtype": "Select",
+   "label": "Based ON",
+   "options": "Amount\nQty"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Float",
+   "label": "Amount"
+  },
+  {
+   "default": "0",
+   "fieldname": "payed",
+   "fieldtype": "Check",
+   "label": "Payed"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "To Date"
+  },
+  {
+   "fieldname": "commission_percent",
+   "fieldtype": "Data",
+   "label": " Commission Percent"
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Data",
+   "label": " Commission Amount"
+  },
+  {
+   "fieldname": "invoice_qty",
+   "fieldtype": "Data",
+   "label": "Invoice Qty"
+  },
+  {
+   "fieldname": "invocie_amount",
+   "fieldtype": "Data",
+   "label": "Invocie Amount"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-25 16:13:43.063981",
+ "modified_by": "Administrator",
+ "module": "dynamic",
+ "name": "Sales Person Commetion",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

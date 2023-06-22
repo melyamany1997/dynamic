@@ -1,0 +1,61 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-10-03 09:03:38.689216",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends": "Accounting",
+ "extends_another_page": 1,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "extend acount",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "trial balance Date",
+   "link_to": "Trial Balance Date",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Order Summary",
+   "link_to": "Purchase Order Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "General Ledger Report",
+   "link_to": "General Ledger Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-03-15 11:50:29.373829",
+ "modified_by": "Administrator",
+ "module": "Dynamic Accounts",
+ "name": "extend acount",
+ "onboarding": "Accounts",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "shortcuts": [
+  {
+   "doc_view": "Report Builder",
+   "label": "Purchase Order Summary",
+   "link_to": "Purchase Order Summary",
+   "type": "Report"
+  }
+ ]
+}

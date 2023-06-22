@@ -1,0 +1,227 @@
+<div style="margin-top: 20%;" >
+    <div class="row margin-bottom">
+        <div class="col-xs-12" style="text-align: center">
+            <h5><strong>{{_("اذن صرف من مخزون الأمانة (تعاقد التخزين) ")}}</strong></h5>
+            <br />
+        </div>
+    </div>
+
+
+    <div class="row margin-bottom">
+        <div class="col-xs-6">
+            <table class="table ">
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Date')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            {{ doc.posting_date }}
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Shipped To')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            {{ doc.to_warehouse }}
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Attention')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            {{ doc.attention or ''}}
+                        </span>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <table class="table ">
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Receipt')}} # : </b>
+                    </td>
+                    <td>
+                        <span>
+                            {{ doc.name }}
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="display: flex;">
+                        <b></b>
+                    </td>
+                    <td>
+                        <span>
+                            {{ doc.remarks or ''}}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="margin-bottom">
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>
+                    <div>{{_('Sr.')}}</div>
+                </th>
+                <th>
+                    <div>{{_('Product ID')}}</div>
+                </th>
+                <th style="width: 30% !important">
+                    <div>{{_('Description')}}</div>
+                </th>
+                <th>
+                    <div>{{_('Lot Number')}}</div>
+                </th>
+                <th>
+                    <div>{{_('Quantity')}}</div>
+                </th>
+                <th>
+                    <div>{{_('Unit Price')}}</div>
+                </th>
+                <th>
+                    <div>{{_('Total Value')}}</div>
+                </th>
+            </tr>
+
+            {% for item in doc.items %}
+
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.item_code }}</td>
+
+                <td>{{ item.description or ''}}</td>
+                <td>{{ item.batch_no or '' }}</td>
+
+                <td>{{ item.qty }}</td>
+                <td>
+                    {{ frappe.utils.fmt_money(item.basic_rate,currency=doc.currency) }}
+                </td>
+                <td>
+                    {{ frappe.utils.fmt_money(item.basic_amount,currency=doc.currency) }}
+                </td>
+
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="row margin-bottom">
+        <div class="col-xs-8">
+            <table class="table ">
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Quantities Requested by')}} : </b>
+                    </td>
+                    <td>
+                        <span>
+
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Name')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            ..........................................................................
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Date')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            ..........................................................................
+                        </span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('Signature')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+                            ..........................................................................
+                        </span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="display: flex;">
+                        <b>{{_('NOTE')}}: </b>
+                    </td>
+                    <td>
+                        <span>
+
+                        </span>
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-xs-4">
+            <table class="table table-bordered table-condensed">
+                <tr>
+                    <td><strong>{{_('SUBTOTAL')}} : </strong></td>
+                    <td colspan="2">
+                        {{ frappe.utils.fmt_money(doc.total_amount,currency=doc.currency) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{_('Sales Tax 14%')}} : </strong></td>
+                    <td colspan="2">
+                        {{ frappe.utils.fmt_money(doc.total_amount * 0.14,currency=doc.currency) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{_('TOTAL')}} : </strong></td>
+                    <td colspan="2">
+                        {{ frappe.utils.fmt_money(doc.total_amount * 1.14,currency=doc.currency) }}
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    </div>
+    <br />
+
+
+
+</div>

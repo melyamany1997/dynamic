@@ -1,0 +1,286 @@
+<!-- {%- from "templates/print_formats/standard_macros.html" import add_header -%} -->
+
+{% if doc.contact_person%}
+{% set supp_contact = frappe.get_doc("Contact",doc.contact_person) %}
+{%else%}
+{% set supp_contact = 0 %}
+{%endif%}
+
+{% set supplier_address = get_party_address('Supplier', doc.supplier)%}
+
+{% if letter_head and not no_letterhead -%}
+{% if print_settings.repeat_header_footer %}
+   <br>  <div class="letter-head">{{ letter_head }}</div>
+{%- endif %}{%- endif %}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" style=""> 
+            <img height="70" src="/assets/dynamic/images/kmina_logo.jpg" width="300">
+        </div>
+        <div class="col-sm-6 col-xs-6  mt-1">
+            <div class="row">
+                <div class="col-12" style="text-align: center;"><b style="border-left: 5px solid yellow;border-spacing: 1px;padding-left: 4px;">{{_("Purchase Order")}}</b></div>
+                <div class="col-sm-8 col-xs-8 mt-2">{{_("Purchase Order Number")}}</div>
+                <div class="col-sm-4 col-xs-4 mt-2">{{_("PO Date")}}</div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-xs-8"><b>{{doc.name}}</b></div>
+                <div class="col-sm-4 col-xs-4"><b>{{ doc.transaction_date }}</b></div>
+            </div>
+        </div>
+</div>
+
+    <div class="row mt-1">
+        <div class="col-sm-6 col-xs-6 mt-1" >  
+            <!--<b>Kmena</b> <br>-->
+        </div>
+        
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <span>
+               KMENA FZ-LLC <br>FOP0003<br>
+                Compass Building,<br>
+                Al Shohada Road,<br>
+                AL Hamra Industrial Zone-FZ,<br>
+                Ras Al Khaimah, United Arab Emirates
+            </span>
+            <!--<span>P.O Box 66852 AL-Badaa, Dubai - AUE<br>-->
+            <!--    The Binary tower by Omniyat, Office 710,Business Bay - Dubai<br>-->
+            <!--    Dubai, United Arab Emir.-->
+            <!--    TRN : 100512258300003-->
+            <!--</span>-->
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <!--{{_("Your Contact")}} <br>-->
+            <!--<b>{{doc.contact_display}}</b>-->
+            <!--{%if supp_contact and supp_contact.phone_nos[0]%}-->
+            <!--<b>{{supp_contact.phone_nos[0].phone}}</b>-->
+            <!--{%else%}-->
+            <!--<b>{{_("None")}}</b>-->
+            <!--{%endif%}-->
+             {{_("Delivery Address :")}} <br>
+            {{_("Mr. Habib Gara,")}} <br>
+            {{_("Mobile: +33627441980")}} <br>
+            {{_(" EV Cargo / Cold Chain")}} <br>
+            {{_("229 Rue de la belle etoile")}} <br>
+            {{_("95700 Roissy CDG, Paris")}} <br>
+             {{_("email: Coldchain@eu.evcargo.com")}} <br>
+           
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">
+        </div>
+    </div>
+
+    <!--<div class="row">-->
+    <!--    <div class="col-sm-6 col-xs-6 mt-1" >-->
+    <!--        <span>-->
+    <!--        </span>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-6 col-xs-6 mt-1" >-->
+    <!--        {{_("Your Contact")}} <br>-->
+    <!--        {%if supp_contact and supp_contact.phone_nos[0]%}-->
+    <!--        <b>{{supp_contact.phone_nos[0].phone}}</b>-->
+    <!--        {%else%}-->
+    <!--        <b>{{_("None")}}</b>-->
+    <!--        {%endif%}-->
+           
+    <!--        <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">-->
+    <!--    </div>-->
+    <!--</div>-->
+
+    <div class="row mt-3">
+        <div class="col-sm-6 col-xs-6 mt-1" >  
+            <!--{{_("Supplier")}} <br>-->
+            <b>{{doc.supplier}}</b>
+            <p>{{doc.address_display}}</p>
+            <!--<hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">-->
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+          Inco Term : {{doc.inco_term}}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+             <!--{{_("Your Contact")}} <br>-->
+            <b>{{doc.contact_display}}</b>
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+           
+        </div>
+        
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-sm-12 col-xs-12 mt-1" >
+            <!--{{_("TRN")}}:<br>-->
+        </div>
+        <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+    </div>
+
+
+
+
+    <!-- items -->
+    <div class="row mt-1">
+        <div class=" col-sm-12 col-xs-12 margin-top margin-bottom" >
+            <table class="table table-bordered table-condensed" style="border-collapse:collapse;">
+                <tr>
+                    <th>NO</th>
+                    <th style="width:30%">Item Name</th>
+                    <th>Shipping DT</th>
+                    <th>QTY</th>
+                    <th>UOM</th>
+                    <!-- hint -->
+                    <th>Price before discount</th> 
+                    <th>Disc%</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <!-- <th>print</th>
+                    <th>Mfg.dt</th>
+                    <th>Expirt.dt</th>
+                    <th>SFDA</th>
+                    <th>HS</th> -->
+                    <!-- <th>سعر بعد الخصم</th>
+                    <th>الأجمالى</th> -->
+                </tr>
+                {% for item in doc.items %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.schedule_date}}</td>
+                    <td>{{ item.qty}}</td>
+                    <td>{{ item.uom}}</td>
+                    <td> {{ item.rate + item.discount_amount}}</td>
+                    <td>{{ item.discount_precentage or item.discount_amount or 0}}</td>
+                    <td>{{ item.rate or 0}}</td>
+                    <td>{{ item.amount}}</td>
+                    <!-- <td>{{ item.price_list_rate or 0}}</td> -->
+                    <!-- <td>{{ item.batch_km or " "}}</td>
+                    <td>{{ item.manfacturing_date or ""}}</td>
+                    <td>{{ item.expiration_date or " "}}</td>
+                    <td>{{ item.sfda_registration_no or " "}}</td>
+                    <td>{{ item.hs_code or " "}}</td> -->
+                    <!-- <td>{{ item.amount }}</td> -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+
+    
+    
+    </div>
+    <!-- total -->
+    <div class="row">
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Payment Terms")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ doc.payment_terms_template}}
+        </div>
+        <!-- <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Total Before Tax")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.total or 0,currency=doc.currency) }}
+             {{ doc.base_total }} 
+        </div> -->
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Total Tax")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.total_taxes_and_charges or 0,currency=doc.currency) }}
+        </div>
+    </div> -->
+    
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div style="border-left: 5px solid yellow;" class="col-sm-3 col-xs-3 mt-1" >
+           <b>{{_("Grand Total")}}:</b> 
+
+
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.grand_total or 0,currency=doc.currency) }}
+        </div>
+
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            Terms: <br>
+            {{doc.terms}}
+        </div>
+
+        <!-- <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;"> -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 mt-1" style=""> 
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+        </div>
+
+        <!-- <div class="col-sm-6 col-xs-6 " style=""> 
+        <b>Tel.UAE : +971 4575 4706</b> <br>
+        <b>Tel.KWT : +965 9606 5742</b> <br>
+        </div>
+        <div class="col-sm-6 col-xs-6 " style=""> 
+            <b>Email:</b> supplychain-ae@centralcircleco.com;<br>
+            info-ae@centralcircleco.com
+        </div>            -->
+</div>
+</div>
+
+
+
+<!-- FOOTER -->
+<!--{% if print_settings.repeat_header_footer %}-->
+<!--<div id="footer-html" class="visible-pdf">-->
+<!--  {% if not no_letterhead and footer %}-->
+<!--  <div class="letter-head-footer">-->
+<!--    {{ footer }}-->
+<!--  </div>-->
+<!--  {% endif %}-->
+<!--  <p class="text-center small page-number visible-pdf">-->
+<!--    {{ _("Page {0} of {1}").format('<span class="page"></span>', '<span class="topage"></span>') }}-->
+<!--  </p>-->
+<!--</div>-->
+<!--{% endif %}-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

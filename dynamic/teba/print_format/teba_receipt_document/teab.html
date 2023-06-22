@@ -1,0 +1,140 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<style>
+
+</style>
+<div>
+    <div id="header-html" class="hidden-pdf">
+            <!-- <img src="/assets/dynamic/images/hm_header.jpg" /> -->
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-xs-12" style="text-align: center;">
+            <b>{{_("أذن صرف نقديه رقم ")}}</b>
+        </div>
+        <div class="col-xs-12" style="text-align: center;">
+            <small>{{doc.name}}</small>
+        </div>
+
+        <div class="col-xs-6" style="text-align: right;margin-top:10px ;">
+             {{_("تحريرا في")}} : {{frappe.utils.getdate(doc.creation)}} 
+        </div>
+
+        <div class="col-xs-3" style="text-align: center;">
+            <div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="cent-egp">قرش</h4>
+                    </div>
+                    <div class="row ">
+                        <div class="cent-egp box">{{frappe.utils.cint((doc.amount % 1)*1000)}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="amount-egp">جنية</h4>
+                    </div>
+                    <div class="row">
+                        <div class="amount-egp box">{{frappe.utils.cint(doc.amount)}}</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- <div class="col-xs-6" style="text-align: center;">
+            <div class="row">
+                <h4 class="">{{_("قرش")}}</h4>
+                <div class="row ">
+                    <div class="cent-egp box">{{frappe.utils.cint((doc.amount % 1)*1000)}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="">{{_("جنيه")}}</h4>
+                <div class="row ">
+                    <div class="cent-egp box">{{frappe.utils.cint((doc.amount % 1)*1000)}}</div>
+                </div>
+            </div> -->
+
+
+          
+           
+            
+    </div>
+
+  
+
+
+        <!-- <hr> -->
+        <!-- <div class="col-xs-3" style="text-align: center;">
+            <div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="cent-egp">قرش</h4>
+                    </div>
+                    <div class="row ">
+                        <div class="cent-egp box">{{frappe.utils.cint((doc.amount % 1)*1000)}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="amount-egp">جنية</h4>
+                    </div>
+                    <div class="row">
+                        <div class="amount-egp box">{{frappe.utils.cint(doc.amount)}}</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div> -->
+        
+
+   <div  class="row margin-bottom" style="margin-top: 10px;">
+    <div class="col-xs-6">
+        {{_("ستملنا من ")}} : {{doc.account}}
+    </div>
+   </div>
+
+   <div  class="row margin-bottom"  style="margin-top: 10px;">
+    <div class="col-xs-6">
+        {{_("مبلغ وقدره ")}} : {{doc.amount}}
+    </div>
+   </div>
+
+   <div  class="row margin-bottom" style="margin-top: 10px;">
+    <div class="col-xs-6">
+        {{_("وذلك قيمة  ")}} : .............................
+    </div>
+   </div>
+
+   <div  class="row margin-bottom" style="margin-top: 10px;text-align: center;">
+    <div class="col-xs-12">
+        {{_("وتحرر هذا الأيصال بالأستلام")}} 
+    </div>
+   </div>
+
+    <br>
+    <div class="row margin-bottom" style="text-align: center;">
+        <div class="col-xs-4">
+            <h4>  {{_("أمين الخزنة")}}  </h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4>  {{_("مسئول المبيعات ")}} </h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4> الحسابات</h4>
+            <h4>.........................</h4>
+        </div>
+    </div>
+    <br>
+    <div  class="row margin-bottom" style="margin-top: 10px;text-align: center;">
+        <div class="col-xs-12">
+            {{_(" لايعتمد هذا الأيصال مالم يكن مختوما بختم الشركة  ")}} 
+        </div>
+       </div>
+
+    <div id="footer-html" class="">
+        <!-- <img src="/assets/dynamic/images/hm_footer.jpg" /> -->
+    </div>
+
+</div>

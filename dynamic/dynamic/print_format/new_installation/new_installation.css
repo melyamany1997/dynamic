@@ -1,0 +1,119 @@
+.sp1{border-style: solid;
+    display: inline-block;
+    width:25px;
+    height:25px;
+    text-align: center;
+}
+
+.sp2{
+    border-style: solid;
+    width:25px;
+    display: inline-block;
+    height:15px;
+}
+
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+
+}
+div.check:empty {
+    outline: 1px solid;
+    height: 1em;
+    width:10px;
+    height:10px;
+    margin:3px;
+    background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.feedback{
+     display: inline-block;
+      border-style: solid;
+    width:25px;
+    height:25px;
+}
+
+.img1{
+    width:100px;
+    height:100px;
+}
+
+#tb3{
+    width:300px;
+    margin-top:1px;
+}
+
+#tb4{
+    width:300px;
+    margin-top:3px;
+    float:left;
+    height:35px;
+}
+
+div.note:empty {
+    outline: 1px solid;
+    height: 1em;
+    width:400px;
+    height:30px;
+    float:right;
+    margin:3px;
+}
+
+
+.header_p2{
+    margin-top:130px;
+}
+
+
+
+table, td, th {
+  border: 2px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#hed1{
+    margin-top:1px;
+    margin-bottom:2px;
+}
+#hed4{
+    margin-top:3px;
+    margin-bottom:2px;
+}
+#hed2{
+    margin-top:100px;
+}
+
+#main{
+    background-image: url("/assets/dynamic/images/gepco_installation.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 40%;
+    background-size: 300px 60%;
+    
+}
+
+
+.test{
+    display:inline-block;
+}
+.w1{
+    width:100px;
+    background-color:green;
+}
+
+
+.pl{
+    
+    padding-left:30px;
+}
+
+
+.pl2{
+    
+    padding-left:40px;
+}

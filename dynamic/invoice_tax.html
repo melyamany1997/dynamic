@@ -1,0 +1,562 @@
+<!-- {% set print_data = get_invoice_tax_data(doc.name) %} {% set total_amount =
+doc.grand_total or doc.rounded_total %} {% set total_discount =
+print_data.total_discount_amount %} {% set total_tax =
+print_data.total_tax_amount %} {% set total_taxable_amount = total_amount %} {%
+set net_after_tax = total_amount + total_tax %} {%- set customer =
+frappe.get_doc("Customer", doc.customer) -%} {%- set company =
+frappe.get_doc("Company", doc.company) -%} {%- set base_url =
+print_data.server_url or "" -%}
+
+{%- set qr_code_data =  encode_invoice_data(doc.name) -%}
+
+
+
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <link
+    type="text/css"
+    href="{{base_url}}/assets/frappe/css/bootstrap.css"
+    rel="stylesheet"
+  />
+  <link
+    type="text/css"
+    href="{{base_url}}/assets/frappe/scss/desk/css_variables.scss"
+    rel="stylesheet"
+  />
+  <link
+    type="text/css"
+    href="{{base_url}}/assets/dynamic/css/dynamic.css"
+    rel="stylesheet"
+  />
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="{{base_url}}/assets/frappe/css/font-awesome.css"
+  />
+  <link rel="stylesheet" href="{{base_url}}/assets/css/printview.css" />
+
+  <!-- <style type="text/css">
+    .print-heading {
+      text-align: center !important;
+    }
+    @media screen {
+      .print-format-gutter {
+        background-color: #d1d8dd;
+        padding: 30px 0px;
+      }
+      .print-format {
+        background-color: white;
+        border-radius: 8px;
+        max-width: 8.3in;
+        min-height: 11.69in;
+        padding: 0.75in;
+        margin: auto;
+        color: var(--gray-900);
+      }
+
+      .print-format.landscape {
+        max-width: 11.69in;
+        padding: 0.2in;
+      }
+
+      .page-break {
+        /* padding: 15px 0px; */
+        border-bottom: 1px dashed #888;
+      }
+
+      /* .page-break:first-child {
+		padding-top: 0px;
+	} */
+
+      .page-break:last-child {
+        border-bottom: 0px;
+      }
+
+      /* mozilla hack for images in table */
+      body:last-child .print-format td img {
+        width: 100% !important;
+      }
+
+      @media (max-width: 767px) {
+        .print-format {
+          padding: 0.2in;
+        }
+      }
+    }
+
+    @media print {
+      .print-format p {
+        margin-left: 1px;
+        margin-right: 1px;
+      }
+    }
+
+    .disabled-check {
+      color: #eee;
+    }
+
+    .data-field {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .data-field .value {
+      word-wrap: break-word;
+    }
+
+    .important .value {
+      font-size: 120%;
+      font-weight: bold;
+    }
+
+    .important label {
+      line-height: 1.8;
+      margin: 0px;
+    }
+
+    .table {
+      font-size: inherit;
+      margin: 20px 0px;
+    }
+
+    .square-image {
+      width: 100%;
+      height: 0;
+      padding: 50% 0;
+      background-size: contain;
+      /*background-size: cover;*/
+      background-repeat: no-repeat !important;
+      background-position: center center;
+      border-radius: 4px;
+    }
+
+    .print-item-image {
+      object-fit: contain;
+    }
+
+    .pdf-variables,
+    .pdf-variable,
+    .visible-pdf {
+      display: none !important;
+    }
+
+    .print-format {
+      font-size: 9pt;
+      font-family: Inter, "Helvetica Neue", Helvetica, Arial, "Open Sans",
+        sans-serif;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    .print-heading {
+      border-bottom: 1px solid #aaa;
+      margin-bottom: 10px;
+    }
+
+    .print-heading h2 {
+      margin: 0px;
+    }
+    .print-heading h4 {
+      margin-top: 5px;
+    }
+
+    table.no-border,
+    table.no-border td {
+      border: 0px;
+    }
+
+    .print-format label {
+      /* wkhtmltopdf breaks label into multiple lines when it is inline-block */
+      display: block;
+      font-weight: 700;
+    }
+
+    .print-format img {
+      max-width: 100%;
+    }
+
+    .print-format table td > .primary:first-child {
+      font-weight: bold;
+    }
+
+    .print-format td,
+    .print-format th {
+      vertical-align: top !important;
+      padding: 6px !important;
+    }
+
+    .print-format p {
+      margin: 3px 0px 3px;
+    }
+
+    .print-format table td pre {
+      white-space: normal;
+      word-break: normal;
+    }
+
+    table td div {
+      /* needed to avoid partial cutting of text between page break in wkhtmltopdf */
+      page-break-inside: avoid !important;
+    }
+
+    /* hack for webkit specific browser */
+    @media (-webkit-min-device-pixel-ratio: 0) {
+      thead,
+      tfoot {
+        display: table-header-group;
+      }
+    }
+
+    [document-status] {
+      margin-bottom: 5mm;
+    }
+
+    .signature-img {
+      background: #fff;
+      border-radius: 3px;
+      margin-top: 5px;
+      max-height: 150px;
+    }
+
+    .print-format-preview [data-fieldtype="Table"] {
+      overflow: auto;
+    }
+    .print-heading {
+      text-align: right;
+      text-transform: uppercase;
+      color: #666;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #d1d8dd;
+    }
+
+    .print-heading h2 {
+      font-size: 24px;
+    }
+
+    .print-format th {
+      background-color: #eee !important;
+      border-bottom: 0px !important;
+    }
+
+    .print-format .primary.compact-item {
+      font-weight: bold;
+    }
+
+    /* modern format: for-test */
+
+    .print-heading {
+      text-align: center !important;
+    }
+  </style> -->
+<!-- 
+
+</head>
+<body
+  style="
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0px;
+    font-size: 1 rem;
+  "
+>
+  <div>
+    <div id="header-html" class="hidden-pdf">
+      <div class="print-heading">
+        <h4>
+          <div>فاتوره ضريبية</div>
+          <div>Tax Invoice</div>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row margin-bottom">
+      <div class="col-xs-8">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <td><strong>Invocie No: </strong></td>
+            <td colspan="2">{{ doc.name }}</td>
+            <td><strong>:رقم الفاتوره</strong></td>
+          </tr>
+        </table>
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <td><strong>Invoice Issue Date: </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.format_date(doc.posting_date) }}
+            </td>
+            <td><strong>:تاريخ أصدار الفاتوره</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Date of Supply: </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.format_date(doc.posting_date) }}
+            </td>
+            <td><strong>:تاريخ التوريد</strong></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-xs-4">
+        <!-- Qr Code-->
+<!--         
+        {%- set url =
+        base_url+"/api/method/dynamic.utils.download_pdf?name="+doc.name -%}
+        <img
+          style="margin: 0% !important"
+          id="barcode"
+          src="https://chart.googleapis.com/chart?chs=120x120&amp;cht=qr&amp;chl={{qr_code_data}}"
+          alt=""
+          title="Sales Invoice"
+          width="120"
+          height="120"
+        />
+      </div>
+    </div>
+
+    <div class="row margin-bottom">
+      <div class="col-xs-6">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <th>Seller</th>
+            <th colspan="2"></th>
+
+            <th>البائع</th>
+          </tr>
+          <tr>
+            <td><strong>Name: </strong></td>
+            <td colspan="2">{{ company.name or ''}}</td>
+            <td><strong>:الأسم</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Building No: </strong></td>
+            <td colspan="2">{{ company.buildingnumber or ''}}</td>
+            <td><strong>:رقم المبنى</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Street Name: </strong></td>
+            <td colspan="2">{{ company.street or ''}}</td>
+            <td><strong>:أسم الشارع</strong></td>
+          </tr>
+          <tr>
+            <td><strong>District: </strong></td>
+            <td colspan="2">{{ company.governate or ''}}</td>
+            <td><strong>:الحى</strong></td>
+          </tr>
+          <tr>
+            <td><strong>City: </strong></td>
+            <td colspan="2">{{ company.regioncity or ''}}</td>
+            <td><strong>:المدينه</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Country: </strong></td>
+            <td colspan="2">{{ company.country_code or ''}}</td>
+            <td><strong>:البلد</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Postal Code: </strong></td>
+            <td colspan="2"></td>
+            <td><strong>:الرمز البريدي</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Additional No: </strong></td>
+            <td colspan="2"></td>
+            <td><strong>:الرقم الاضافي للعنوان</strong></td>
+          </tr>
+          <tr>
+            <td><strong>VAT Number: </strong></td>
+            <td colspan="2">{{ company.tax_id or ''}}</td>
+            <td><strong>:رقم تسجيل ضريبه القيمه المضافه</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Other Buyer ID: </strong></td>
+            <td colspan="2">{{company.issuer_id or ''}}</td>
+            <td><strong>:معرف أخر</strong></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-xs-6">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <th>Buyer</th>
+            <th colspan="2"></th>
+
+            <th>العميل</th>
+          </tr>
+          <tr>
+            <td><strong>Name: </strong></td>
+            <td colspan="2">{{ customer.customer_name or ''}}</td>
+            <td><strong>:الأسم</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Building No: </strong></td>
+            <td colspan="2">{{ customer.buildingnumber or '' }}</td>
+            <td><strong>:رقم المبنى</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Street Name: </strong></td>
+            <td colspan="2">{{ customer.street or ''}}</td>
+            <td><strong>:أسم الشارع</strong></td>
+          </tr>
+          <tr>
+            <td><strong>District: </strong></td>
+            <td colspan="2">{{ customer.governate or ''}}</td>
+            <td><strong>:الحى</strong></td>
+          </tr>
+          <tr>
+            <td><strong>City: </strong></td>
+            <td colspan="2">{{ customer.regioncity or ''}}</td>
+            <td><strong>:المدينه</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Country: </strong></td>
+            <td colspan="2">{{ customer.country_code or ''}}</td>
+            <td><strong>:البلد</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Postal Code: </strong></td>
+            <td colspan="2"></td>
+            <td><strong>:الرمز البريدي</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Additional No: </strong></td>
+            <td colspan="2"></td>
+            <td><strong>:الرقم الاضافي للعنوان</strong></td>
+          </tr>
+          <tr>
+            <td><strong>VAT Number: </strong></td>
+            <td colspan="2">{{ customer.tax_id or ''}}</td>
+            <td><strong>:رقم تسجيل ضريبه القيمه المضافه</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Other Buyer ID: </strong></td>
+            <td colspan="2">{{ customer.receiver_id or ''}}</td>
+            <td><strong>:معرف أخر</strong></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="margin-bottom">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th>
+            <div>Nature of goods or services</div>
+            <div>تفاصيل السلع و الخدمات</div>
+          </th>
+          <th>
+            <div>Unit price</div>
+            <div>سعر الوحده</div>
+          </th>
+          <th>
+            <div>Quantity</div>
+            <div>الكمية</div>
+          </th>
+          <th>
+            <div>Taxable Amount</div>
+            <div>المبلغ الخاضع للضريبة</div>
+          </th>
+          <th>
+            <div>Discount</div>
+            <div>خصومات</div>
+          </th>
+          <th>
+            <div>Tax Rate</div>
+            <div>نسبه الضريبه</div>
+          </th>
+          <th>
+            <div>Tax Amount</div>
+            <div>مبلغ الضريبه</div>
+          </th>
+          <th>
+            <div>tem Subtotal (Including VAT)</div>
+            <div>المجموع (شامل ضريبه القيمه المضافه)</div>
+          </th>
+        </tr>
+
+        {% for item in doc.items %}
+
+        <tr>
+          <td>
+            {{ item.item_code }}-{{ item.item_name }}-{{ item.description }}
+          </td>
+          <td>
+            {{ frappe.utils.fmt_money(item.rate + item.discount_amount,
+            currency=currency) }}
+          </td>
+          <td>{{ item.qty}}</td>
+          <td>{{ frappe.utils.fmt_money(item.amount,currency=currency) }}</td>
+          <td>
+            {{ frappe.utils.fmt_money(item.discount_amount, currency=currency)
+            }}
+          </td>
+          <td>{{ (item.tax_rate or 0)}}</td>
+          <td>{{ (item.tax_amount or 0)}}</td>
+          <td>
+            {{ frappe.utils.fmt_money(item.amount + (item.tax_amount or 0),
+            currency=currency) }}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="row margin-bottom">
+      <div class="col-xs-12">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <th>Total Amounts</th>
+            <th colspan="2"></th>
+
+            <th>:أجمالي المبلغ</th>
+          </tr>
+          <tr>
+            <td><strong>Total (Excluding VAT): </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.fmt_money(total_amount +
+              total_discount,currency=currency) }}
+            </td>
+            <td><strong>:الاجمالي (غير شامل ضريبة القيمة المضافه)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Discount: </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.fmt_money(total_discount,currency=currency) }}
+            </td>
+            <td><strong>:مجموع الخصومات</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Total Taxable Amount (Excluding VAT): </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.fmt_money(total_taxable_amount,currency=currency)
+              }}
+            </td>
+            <td>
+              <strong
+                >:الأجمالى الخاضع للضريبه(غير شامل ضريبة القيمة المضافه)</strong
+              >
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Total VAT: </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.fmt_money(total_tax,currency=currency) }}
+            </td>
+            <td><strong>:مجموع ضريبة القيمة المضافة</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Total Amount Due: </strong></td>
+            <td colspan="2">
+              {{ frappe.utils.fmt_money(net_after_tax,currency=currency) }}
+            </td>
+            <td><strong>:أجمالى المبلغ المستحق</strong></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</body> --> --> -->

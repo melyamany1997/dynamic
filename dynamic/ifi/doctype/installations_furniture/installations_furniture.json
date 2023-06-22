@@ -1,0 +1,340 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-11-27 14:12:06.965518",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_order",
+  "naming_series",
+  "installation_type",
+  "column_break_1",
+  "posting_date",
+  "section_break_3",
+  "customer",
+  "customer_name",
+  "customer_phone_number",
+  "url",
+  "check_url",
+  "column_break_2",
+  "delegate",
+  "delegate_name",
+  "delegate_phone_number",
+  "furniture_details_section",
+  "from_time",
+  "column_break_15",
+  "to_time",
+  "section_break_17",
+  "items",
+  "totals_section",
+  "total_requested_furniture",
+  "total_furniture",
+  "column_break_16",
+  "completed_furniture",
+  "pending_furniture",
+  "team_details_section",
+  "team",
+  "installation_team_detail",
+  "notes_section",
+  "notes",
+  "ref_status",
+  "customer_feedback_section",
+  "rate",
+  "column_break_34",
+  "feedback",
+  "amended_from",
+  "description"
+ ],
+ "fields": [
+  {
+   "fetch_from": "installation_request.sales_order",
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Order",
+   "options": "Sales Order",
+   "read_only": 1,
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "INS-Furniture-.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fetch_from": "sales_order.customer",
+   "fetch_if_empty": 1,
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fetch_from": "customer.mobile_no",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "read_only": 1,
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "installation_request.delegate",
+   "fetch_if_empty": 1,
+   "fieldname": "delegate",
+   "fieldtype": "Link",
+   "label": "Delegate",
+   "options": "Customer Delegate",
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fetch_from": "delegate.delegate_name",
+   "fieldname": "delegate_name",
+   "fieldtype": "Data",
+   "label": "Delegate Name",
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fetch_from": "delegate.delegate_no",
+   "fetch_if_empty": 1,
+   "fieldname": "delegate_phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "read_only_depends_on": "installation_request"
+  },
+  {
+   "fieldname": "furniture_details_section",
+   "fieldtype": "Section Break",
+   "label": "Furniture Details"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Installation Furniture Item"
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "depends_on": "installation_request",
+   "fetch_from": "installation_request.total_cars",
+   "fieldname": "total_requested_furniture",
+   "fieldtype": "Int",
+   "label": "Total Requested Furniture",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_furniture",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Furniture",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "completed_furniture",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Completed Furniture",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "pending_furniture",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Pending Furniture",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "team_details_section",
+   "fieldtype": "Section Break",
+   "label": "Team Details"
+  },
+  {
+   "fieldname": "team",
+   "fieldtype": "Link",
+   "label": "Team",
+   "options": "Installation Team"
+  },
+  {
+   "fieldname": "installation_team_detail",
+   "fieldtype": "Table",
+   "label": "Installation Team Detail",
+   "options": "Installation Team Detail"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fetch_from": "installation_request.notes",
+   "fetch_if_empty": 1,
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "ref_status",
+   "fieldtype": "Select",
+   "label": "Ref Status",
+   "no_copy": 1,
+   "options": "Pending\nStart\nInprogress\nCompleted",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "from_time",
+   "fieldtype": "Datetime",
+   "label": "From Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Datetime",
+   "label": "To Time",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.url",
+   "fieldname": "url",
+   "fieldtype": "Small Text",
+   "label": "URL"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "customer_feedback_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Feedback"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "rate",
+   "fieldtype": "Rating",
+   "label": "Rate",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "feedback",
+   "fieldtype": "Small Text",
+   "label": "Notes",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Installations Furniture",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "hidden": 1,
+   "label": "description",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "installation_type",
+   "fieldtype": "Select",
+   "label": "Installation Type",
+   "options": "Export\nInstallation"
+  },
+  {
+   "fieldname": "check_url",
+   "fieldtype": "Button",
+   "label": "Check Url"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-03-21 17:03:13.360520",
+ "modified_by": "Administrator",
+ "module": "IFI",
+ "name": "Installations Furniture",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "customer,sales_order",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "customer"
+}

@@ -1,0 +1,104 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<style>
+
+</style>
+<div>
+    <div id="header-html" class="hidden-pdf">
+            <img src="/assets/dynamic/images/hm_header.jpg" />
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-xs-3" style="text-align: center;">
+            <div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="cent-egp">قرش</h4>
+                    </div>
+                    <div class="row ">
+                        <div class="cent-egp box">{{frappe.utils.cint((doc.amount % 1)*1000)}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-4" style="text-align: center;">
+                    <div class="row">
+                        <h4 class="amount-egp">جنية</h4>
+                    </div>
+                    <div class="row">
+                        <div class="amount-egp box">{{frappe.utils.cint(doc.amount)}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6" style="text-align: center;">
+            <div class="center" style="text-align: center;">
+                <h4 class="header">
+                    <div>سند صــــــرف</div>
+                    <div class="underline">Payment Voucher</div>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom" style="text-align:center">
+        <div class="col-xs-4">
+            <div>
+                التاريخ {{get_hijri_date(doc.posting_date)}} هـ
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h3 class="serial">{{doc.name}}</h3>
+        </div>
+        <div class="col-xs-4">
+            الموافق {{doc.posting_date}} مـ
+        </div>
+    </div>
+
+    <div class="row margin-bottom" style="direction:ltr">
+        <table width="95%" style="margin: auto;">
+            <tr>
+                <td style="text-align: left;" colspan="2"><strong>Pay To Mrs : </strong></td>
+                <td style="text-align: center;" colspan="2">{{ doc.accounts[0].party }}</td>
+                <td style="text-align: right;" colspan="2"><strong>: اصرفو للسيد / السادة</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;" colspan="2"><strong>Amount : </strong></td>
+                <td style="text-align: center;" colspan="2">{{ frappe.utils.money_in_words(doc.amount,doc.currency) }}
+                </td>
+                <td style="text-align: right;" colspan="2"><strong>: مبلغ و قدره</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Bank : </strong></td>
+                <td style="text-align: center;">{{ doc.account or ""}}</td>
+                <td style="text-align: right;"><strong>: علي بنك</strong></td>
+
+                <td style="text-align: left;"><strong>Cash/Cheque No. : </strong></td>
+                <td style="text-align: center;">{{ doc.reference_no or "" }}</td>
+                <td style="text-align: right;"><strong>: نقدا / شيك رقم</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;" colspan="2"><strong>Being : </strong></td>
+                <td style="text-align: center;" colspan="2">{{ doc.notes or "" }}</td>
+                <td style="text-align: right;" colspan="2"><strong>: وذلك مقابل</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+    <div class="row margin-bottom" style="text-align: center;">
+        <div class="col-xs-4">
+            <h4>المحاسب Accountant</h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4>المستلم Receiver</h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4>الختم Seal</h4>
+            <h4>.........................</h4>
+        </div>
+    </div>
+    <br>
+
+    <div id="footer-html" class="">
+        <img src="/assets/dynamic/images/hm_footer.jpg" />
+    </div>
+
+</div>

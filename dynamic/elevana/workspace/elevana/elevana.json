@@ -1,0 +1,79 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2023-02-19 14:46:48.089692",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends": "Selling",
+ "extends_another_page": 1,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Elevana",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Marketer & Distributor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Marketer Request",
+   "link_to": "Marketer Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer Request",
+   "link_to": "Customer Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Phone Call",
+   "link_to": "Phone Call",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Items and Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Group",
+   "link_to": "Coupon Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-02-22 11:10:44.562334",
+ "modified_by": "Administrator",
+ "module": "Elevana",
+ "name": "Elevana",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "restrict_to_domain": "Elevana",
+ "shortcuts": []
+}

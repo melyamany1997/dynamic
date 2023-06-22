@@ -1,0 +1,285 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TEMP-{YY}-{#####}",
+ "creation": "2022-03-21 14:20:51.555662",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "maintenance_contract",
+  "customer",
+  "include_spare_part",
+  "column_break_2",
+  "car_numbers",
+  "warehouse",
+  "status",
+  "column_break_4",
+  "material_request",
+  "maintenance_request",
+  "section_break_4",
+  "cars_plate_numbers",
+  "section_break_6",
+  "items",
+  "section45",
+  "service_items",
+  "ss577",
+  "cars",
+  "ss4",
+  "maintenance_team",
+  "section_break_8",
+  "problem",
+  "column_break_10",
+  "the_action_taken",
+  "section_break_12",
+  "small_text_13",
+  "remarks",
+  "section_break_15",
+  "signature",
+  "account",
+  "cost_center",
+  "stock_entry",
+  "sales_invoice",
+  "delivery_note",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "maintenance_contract",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Maintenance Contract",
+   "options": "Maintenance Contract"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "car_numbers",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Car Numbers",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.maintenance_contract == undefined || doc.maintenance_contract == ''",
+   "fieldname": "cars_plate_numbers",
+   "fieldtype": "Table",
+   "label": "Cars Plate Numbers",
+   "options": "Cars Plate Numbers For Template"
+  },
+  {
+   "depends_on": "eval:doc.material_request ==1",
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "maintenance_team",
+   "fieldtype": "Table",
+   "label": "Maintenance Team",
+   "options": "Maintenance Team"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "problem",
+   "fieldtype": "Small Text",
+   "label": "Problem"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "the_action_taken",
+   "fieldtype": "Data",
+   "label": "The Action Taken"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "small_text_13",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "signature",
+   "fieldtype": "Signature",
+   "label": "Signature"
+  },
+  {
+   "depends_on": "eval:doc.maintenance_contract != undefined && doc.maintenance_contract != ''",
+   "fieldname": "cars",
+   "fieldtype": "Table",
+   "label": "Cars",
+   "options": "Template Cars"
+  },
+  {
+   "fieldname": "ss4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "maintenance_request",
+   "fieldtype": "Link",
+   "label": " Maintenance Request",
+   "options": "Maintenance Request"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "material_request",
+   "fieldtype": "Check",
+   "label": "Material Request"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Maintenance Template Items"
+  },
+  {
+   "fieldname": "section45",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "service_items",
+   "fieldtype": "Table",
+   "label": "Service Items",
+   "options": "Maintenance Template Service Items"
+  },
+  {
+   "fieldname": "ss577",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "maintenance_contract.include_spare_parts",
+   "fieldname": "include_spare_part",
+   "fieldtype": "Read Only",
+   "label": "include Spare Parts "
+  },
+  {
+   "fetch_from": "maintenance_contract.account",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Account",
+   "options": "Account",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "maintenance_contract.cost_center",
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "print_hide": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "stock_entry",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Stock Entry",
+   "options": "Stock Entry",
+   "print_hide": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "print_hide": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Delivery Note",
+   "options": "Delivery Note",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "maintenance_contract.warehouse",
+   "fetch_if_empty": 1,
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fetch_from": "maintenance_contract.customer",
+   "fetch_if_empty": 1,
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Maintenance Template",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Waiting\nOn Progress\nCompleted"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-03-26 16:27:47.539249",
+ "modified_by": "Administrator",
+ "module": "gebco",
+ "name": "Maintenance Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

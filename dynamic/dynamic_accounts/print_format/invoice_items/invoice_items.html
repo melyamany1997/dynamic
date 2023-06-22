@@ -1,0 +1,264 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<style></style>
+{% set print_data = get_invoice_tax_data(doc.name) %}
+
+<!-- {{ get_invoice_tax_data(doc.name)}} -->
+{% set total_amount = doc.total %} {% set total_discount = doc.discount_amount
+%} {% set total_tax = doc.total_taxes_and_charges %} {% set total_taxable_amount
+= total_amount %} {%set net_after_tax = doc.rounded_total or doc.grand_total %}
+{%- set customer = frappe.get_doc("Customer", doc.customer) -%} {%- set company
+= frappe.get_doc("Company", doc.company) -%} {%- set base_url =
+print_data.server_url or "" -%} {%- set company_address =
+get_company_address(doc.company)-%} {%- set customer_balance =
+get_balance_on(date=doc.posting_date , party_type= 'Customer' , party=
+doc.customer)-%} {%- set qr_code_data = encode_invoice_data(doc.name) -%}
+
+<div >
+  <div>
+    <div class="col-xs-12" style="text-align: right">
+      <img src="{{company.company_logo}}" width="20%" alt="" />
+    </div>
+  </div>
+  <div class="row margin-bottom">
+    <div class="col-xs-6">
+      <table class="table table-bordered">
+        <tr>
+          <th style="text-align: center">{{_('Seller Details')}}</th>
+        </tr>
+        <tr>
+          <td style="display: flex;"> 
+            <b>{{_('Invocie Type')}}: </b>
+            {% if doc.is_return %} {{ _('Return') }} {% endif %} {% if not
+            doc.is_return %} {{ _('Sales') }} {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Invocie No')}}: </strong>
+            {{ doc.name }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Invocie Date')}}: </strong>
+            {{ doc.posting_date }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Supplier Name')}}: </strong>
+            {{ company.company_name }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Tax ID')}}: </strong>
+            {{ company.tax_id }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;">
+            <strong>{{_('Address')}}: </strong>
+            <span style="text-align: center;">{{ get_address_display(doc.company_address or "") or "" }}</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;">
+            <strong>{{_('Sales Person')}}: </strong>
+            {% for row in doc.items %} {{ row.sales_person or "" }} {% endfor %}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-6">
+      <table class="table table-bordered">
+        <tr>
+          <th style="text-align: center">{{_('Customer Details')}}</th>
+        </tr>
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Customer Name')}}: </strong>
+            {{ customer.customer_name or "" }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Tax ID')}}: </strong>
+            {{ customer.tax_id or "" }}
+          </td>
+        </tr>
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Address')}}: </strong>
+            {{ get_address_display(doc.customer_address or "") or "" }}
+          </td>
+        </tr>
+
+        <!-- <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Country')}}: </strong>
+            {{ customer.country_code or "" }}
+          </td>
+        </tr> -->
+
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Customer Balance')}}: </strong>
+            {{ frappe.utils.fmt_money((customer_balance or 0),
+            currency=doc.currency) }}
+          </td>
+        </tr>
+        <tr>
+          <td style="display: flex;"> 
+            <strong>{{_('Due Date')}}: </strong>
+            {{ doc.due_date or "" }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="margin-bottom">
+    <table class="table table-bordered table-condensed">
+      <tr>
+        <th>
+          <div>{{_('Sr.')}}</div>
+        </th>
+        <th>
+          <div>{{_('Item Code')}}</div>
+        </th>
+        <th style="width: 20% !important">
+          <div>{{_('Description')}}</div>
+        </th>
+        <th>
+          <div>{{_('Quantity')}}</div>
+        </th>
+        <th>
+          <div>{{_('Price')}}</div>
+        </th>
+        <th>
+          <div>{{_('Tax Rate')}} %</div>
+        </th>
+        <th>
+          <div>{{_('Tax Amount')}}</div>
+        </th>
+        <th>
+          <div>{{_('Total')}}</div>
+        </th>
+      </tr>
+
+      {% for item in doc.items %}
+
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ item.item_code }}</td>
+
+        <td>{{ item.description }}</td>
+        <td>{{ item.qty }}</td>
+        <td>
+          {{ frappe.utils.fmt_money(item.rate,
+          currency=doc.currency) }}
+        </td>
+        <td>{{ (item.tax_rate or 0)}}%</td>
+        <td>
+          {{ frappe.utils.fmt_money((item.tax_amount or 0),
+          currency=doc.currency) }}
+        </td>
+
+        <td>
+          {{ frappe.utils.fmt_money(item.amount , currency=doc.currency) }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="row margin-bottom">
+    <div class="col-xs-8">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <td><strong>{{_('Total (Excluding VAT)')}} : </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_amount,currency=doc.currency) }}
+          </td>
+        </tr>
+        <tr>
+          <td><strong>{{_('Total Discount')}} : </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_discount,currency=doc.currency) }}
+          </td>
+        </tr>
+        <tr>
+          <td><strong>{{_('Total VAT')}} : </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_tax,currency=doc.currency) }}
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>{{_('Total (Including VAT)')}} : </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(net_after_tax,currency=doc.currency) }}
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>{{_('Total (in Words)')}} : </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.money_in_words (net_after_tax,doc.currency) }}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-4">
+      <!-- Qr Code-->
+      {%- set url =
+      base_url+"/api/method/dynamic.utils.download_pdf?name="+doc.name -%}
+      <img
+        style="margin: 0% !important"
+        id="barcode"
+        src="https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl={{qr_code_data}}"
+        alt=""
+        title="Sales Invoice"
+        width="150"
+        height="150"
+      />
+    </div>
+  </div>
+  <br />
+
+  <div class="row margin-bottom">
+    <div class="col-xs-6" style="text-align: center">
+      <strong>{{_("Seller Signature")}}</strong>
+      <br />
+      <br />
+      <strong>{{_("...................................")}}</strong>
+    </div>
+    <div class="col-xs-6" style="text-align: center">
+      <strong>{{_("Receiver Signature")}}</strong>
+      <br />
+      <br />
+      <strong>{{_("...................................")}}</strong>
+    </div>
+  </div>
+</div>
+
+
+<table class="table table-bordered">
+  <tr>
+    <th style="text-align: center">{{_('Component')}}</th>
+    <th style="text-align: center">{{_('Amount')}}</th>
+  </tr>
+  <tr>
+      <td style="text-align: center">{{_(row.salary_component)}}</td>
+      <td style="text-align: center">{{ frappe.utils.fmt_money(row.amount,currency=doc.currency) }}</td>
+  </tr>
+
+</table>

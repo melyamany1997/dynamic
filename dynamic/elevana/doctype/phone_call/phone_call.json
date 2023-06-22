@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-02-20 13:38:10.827758",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "column_break_2",
+  "naming_series",
+  "section_break_5",
+  "phone_number",
+  "customer_name",
+  "customer_group",
+  "territory",
+  "column_break_9",
+  "customer",
+  "lead",
+  "section_break_12",
+  "user",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone Number",
+   "options": "Phone",
+   "reqd": 1
+  },
+  {
+   "default": "PHN-CLL-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "options": "PHN-CLL-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "no_copy": 1,
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only_depends_on": "eval:doc.customer"
+  },
+  {
+   "fetch_from": "customer.customer_group",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_group",
+   "fieldtype": "Link",
+   "label": "Customer Group",
+   "options": "Customer Group",
+   "read_only_depends_on": "eval:doc.customer"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer.lead_name",
+   "fetch_if_empty": 1,
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "no_copy": 1,
+   "options": "Lead",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.territory",
+   "fetch_if_empty": 1,
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Customer Territory",
+   "options": "Territory",
+   "read_only_depends_on": "eval:doc.customer"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "no_copy": 1,
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-02-20 14:14:19.647380",
+ "modified_by": "Administrator",
+ "module": "Elevana",
+ "name": "Phone Call",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,136 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<div style="direction: ltr !important;margin-top: 0%;">
+    <div id="header-html" class="hidden-pdf">
+        <img src="/assets/dynamic/images/hm_header.jpg" />
+    </div>
+    <div id="header-html" class="hidden-pdf margin-bottom"   style="margin-top: 2%;">
+        <div class="print-heading center" style="text-align: center;">
+            <h4>
+                <div>PURCHASE INVOICE فاتورة مشتريات</div>
+            </h4>
+        </div>
+    </div>
+
+    <div class="row margin-bottom">
+        <table width="95%" style="margin: auto !important;font-size:12px">
+            <tr>
+                <td style="text-align: left;"><strong>Supplier Name :- </strong></td>
+                <td style="text-align: center;">{{ doc.supplier }}</td>
+                <td style="text-align: right;"><strong>:- أسم المورد</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Invoice No :- </strong></td>
+                <td style="text-align: center;">{{ doc.name }}</td>
+                <td style="text-align: right;"><strong>:- رقم الفاتوره</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Invoice Date :- </strong></td>
+                <td style="text-align: center;">{{ doc.posting_date }}</td>
+                <td style="text-align: right;"><strong>:- تاريخ الفاتوره</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Due Date :- </strong></td>
+                <td style="text-align: center;">{{ doc.due_date }}</td>
+                <td style="text-align: right;"><strong>:- تاريخ الأستحقاق</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Supplier Invoice No :- </strong></td>
+                <td style="text-align: center;">{{ doc.bill_no or ""}}</td>
+                <td style="text-align: right;"><strong>:- رقم فاتورة المورد</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Warehouse :- </strong></td>
+                <td style="text-align: center;">{{ doc.set_warehouse or ""}}</td>
+                <td style="text-align: right;"><strong>:- المستودع</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Supplier Address :- </strong></td>
+                <td style="text-align: center;">{{ doc.address_display or "" }}</td>
+                <td style="text-align: right;"><strong>:- عنوان المورد</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Supplier Phone :- </strong></td>
+                <td style="text-align: center;">{{ doc.contact_mobile or "" }}</td>
+                <td style="text-align: right;"><strong>:- هاتف المورد</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Vat Account :- </strong></td>
+                <td style="text-align: center;">{{ doc.company_tax_id or '' }}</td>
+                <td style="text-align: right;"><strong>:- الرقم الضريبى</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><strong>Vat Account for Supplier :- </strong></td>
+                <td style="text-align: center;">{{ doc.tax_id or "" }}</td>
+                <td style="text-align: right;"><strong>:- الرقم الضريبى للمورد</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="margin-top margin-bottom" style="direction:rtl !important">
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>م</th>
+                <th style="width:30%">بيان</th>
+                <th>الكميه</th>
+                <th>سعر قبل الخصم</th>
+                <th>قيمة الخصم</th>
+                <th>سعر بعد الخصم</th>
+                <th>الأجمالى</th>
+            </tr>
+            {% for item in doc.items %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.item_name }}</td>
+                <td>{{ item.qty}}</td>
+                <td>{{ item.price_list_rate or 0}}</td>
+                <td>{{ item.discount_amount or 0}}</td>
+                <td>{{ item.rate or 0}}</td>
+                <td>{{ item.amount }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="2">الأجمالى</th>
+                <th colspan="3">{{ doc.total_qty }}</th>
+                <th>الأجمالى ق الضريبة</th>
+                <th>{{doc.total}}</th>
+            </tr>
+            <tr>
+                <td colspan="5" rowspan="3"><u> <strong> المبلغ بالحروف</strong> :- <strong>{{
+                            frappe.utils.money_in_words(doc.grand_total,doc.currency) }}</strong></u></td>
+                <td>أجمالي الضريبه</td>
+                <td>{{ doc.total_taxes_and_charges }}</td>
+            </tr>
+            <tr>
+                <td>أجمالي الخصم</td>
+                <td>{{ doc.discount_amount }}</td>
+            </tr>
+            <tr>
+                <td>الأجمالى </td>
+                <td>{{ doc.grand_total }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row margin-bottom" style="text-align: center;">
+        <div class="col-xs-4">
+            <h4>أمين المخزن</h4>
+            <h4>.........................</h4>
+            <br />
+            <br />
+            <h4>المورد</h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4>المندوب</h4>
+            <h4>.........................</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4>ادارة المشتريات</h4>
+            <h4>.........................</h4>
+        </div>
+
+    </div>
+
+    <div id="footer-html" class="">
+        <img src="/assets/dynamic/images/hm_footer.jpg" />
+    </div>
+</div>

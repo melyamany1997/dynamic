@@ -1,0 +1,63 @@
+DOCS
+
+
+URL = "http://192.168.201.18"
+
+api_key = ""
+api_secret = ""
+{"header": [
+					{
+						"key": "Authorization",
+						"value": "token {{ api_key }}:{{ apisecret }}",
+						"type": "default"
+					}
+				],
+                
+}
+
+#create customer  
+end point = " /api/method/dynamic.weh.api.create_customer"
+method = "POST" 
+data = { 
+    "customer_name" : " type string  " , 
+    "remote_id" : "customer local id "
+}
+
+success  = { status_code : 200 , message  : customer name }
+
+error = {statuc_code : 400 , message : error message }
+
+
+# get_consumables
+
+end point = "/api/method/dynamic.weh.api.get_consumables" 
+method = "POST"  / "GET"
+data = { 
+   
+    "remote_id" : "customer local id ",
+    "date" :  "YYYY-MM-DD"
+}
+
+
+success = {status_code : 200 ,  
+           message : [ { "item_name" : "item_name" , "Item name"  , "qty":00  , "rate" : 00  , "amount" : 00}]}
+
+
+error = {statuc_code : 400 , message : error message }   
+
+
+#get_sum_consumables
+end point = "/api/method/dynamic.weh.api.get_sum_consumables" 
+method = "POST"  / "GET"
+data = { 
+   
+    "remote_id" : "customer local id ",
+    "date" :  "YYYY-MM-DD"
+}
+
+success = {status_code : 200 , 
+            "amount" : 00 }
+
+
+
+error = {statuc_code : 400 , message : error message }   

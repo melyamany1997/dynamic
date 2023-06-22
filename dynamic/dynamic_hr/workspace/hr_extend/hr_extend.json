@@ -1,0 +1,55 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-02-23 11:11:25.610420",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends": "HR",
+ "extends_another_page": 1,
+ "hide_custom": 0,
+ "icon": "hr",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "HR Extend",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Device",
+   "link_to": "Device",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Device Log",
+   "link_to": "Device Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-03-02 12:42:30.062267",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "HR Extend",
+ "onboarding": "Human Resource",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "restrict_to_domain": "Dynamic HR",
+ "shortcuts": []
+}

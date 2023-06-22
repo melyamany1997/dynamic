@@ -1,0 +1,74 @@
+[
+   {
+    "Code": "6768",
+    "Desc_en": "qqq",
+    "Desc_ar": "rrwwwrr",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T2",
+    "Desc_en": "Table tax (percentage)",
+    "Desc_ar": "ضريبه الجدول (نسبيه)",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T3",
+    "Desc_en": "Table tax (Fixed Amount)",
+    "Desc_ar": "ضريبه الجدول (قطعيه)",
+    "fixed_amount":"1"
+  },
+  {
+    "Code": "T4",
+    "Desc_en": "Withholding tax (WHT)",
+    "Desc_ar": "الخصم تحت حساب الضريبه",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T5",
+    "Desc_en": "Stamping tax (percentage)",
+    "Desc_ar": "ضريبه الدمغه (نسبيه)",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T6",
+    "Desc_en": "Stamping Tax (amount)",
+    "Desc_ar": "ضريبه الدمغه (قطعيه بمقدار ثابت )",
+    "fixed_amount":"1"
+  },
+  {
+    "Code": "T7",
+    "Desc_en": "Entertainment tax",
+    "Desc_ar": "ضريبة الملاهى",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T8",
+    "Desc_en": "Resource development fee",
+    "Desc_ar": "رسم تنميه الموارد",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T9",
+    "Desc_en": "Table tax (percentage)",
+    "Desc_ar": "رسم خدمة",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T10",
+    "Desc_en": "Municipality Fees",
+    "Desc_ar": "رسم المحليات",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T11",
+    "Desc_en": "Medical insurance fee",
+    "Desc_ar": "رسم التامين الصحى",
+    "fixed_amount":"0"
+  },
+  {
+    "Code": "T12",
+    "Desc_en": "Other fees",
+    "Desc_ar": "رسوم أخري",
+    "fixed_amount":"0"
+  }
+]

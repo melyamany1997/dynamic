@@ -1,0 +1,40 @@
+{
+ "autoname": "foramt:{parent}-{permission_type}",
+ "creation": "2020-12-03 17:25:35.205385",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "permission_type",
+  "max_monthly_rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "permission_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Permission Type",
+   "options": "Permission Type",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "max_monthly_rate",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Max Monthly Rate (Minutes)",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-06-22 10:27:01.465989",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Attendence Permission Rule Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

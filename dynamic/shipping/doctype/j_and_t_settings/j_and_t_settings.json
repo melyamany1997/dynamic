@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-15 13:18:24.434224",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "authentication_section",
+  "api_account",
+  "customer_number",
+  "column_break_3",
+  "private_key",
+  "hashed_password",
+  "apis_urls_section",
+  "create_order",
+  "checking_order",
+  "section_break_7",
+  "cancel_order",
+  "order_status_reurn"
+ ],
+ "fields": [
+  {
+   "fieldname": "authentication_section",
+   "fieldtype": "Section Break",
+   "label": "Authentication"
+  },
+  {
+   "fieldname": "api_account",
+   "fieldtype": "Data",
+   "label": "Api Account"
+  },
+  {
+   "fieldname": "private_key",
+   "fieldtype": "Data",
+   "label": "Private Key"
+  },
+  {
+   "fieldname": "apis_urls_section",
+   "fieldtype": "Section Break",
+   "label": "APIS URLS"
+  },
+  {
+   "fieldname": "create_order",
+   "fieldtype": "Data",
+   "label": "Create Order "
+  },
+  {
+   "fieldname": "checking_order",
+   "fieldtype": "Data",
+   "label": "Checking Order"
+  },
+  {
+   "fieldname": "cancel_order",
+   "fieldtype": "Data",
+   "label": "Cancel Order"
+  },
+  {
+   "fieldname": "order_status_reurn",
+   "fieldtype": "Data",
+   "label": "Order Status Reurn"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_number",
+   "fieldtype": "Data",
+   "label": "Customer Number "
+  },
+  {
+   "fieldname": "hashed_password",
+   "fieldtype": "Data",
+   "label": "Hashed Password"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-05-17 09:01:50.013047",
+ "modified_by": "Administrator",
+ "module": "Shipping",
+ "name": "J and T Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

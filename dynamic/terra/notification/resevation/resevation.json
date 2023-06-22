@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2022-06-23 13:24:47.606115",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Reservation",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "modified": "2022-06-23 13:25:38.850818",
+ "modified_by": "Administrator",
+ "module": "terra",
+ "name": "Resevation",
+ "owner": "Administrator",
+ "property_value": "Active",
+ "recipients": [
+  {
+   "receiver_by_document_field": "owner",
+   "receiver_by_role": "Administrator"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "set_property_after_alert": "status",
+ "subject": "{{ doc.name }}"
+}

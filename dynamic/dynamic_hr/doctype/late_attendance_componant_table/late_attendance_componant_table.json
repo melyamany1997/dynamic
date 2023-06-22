@@ -1,0 +1,123 @@
+{
+ "creation": "2020-12-05 10:31:49.704660",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "late_componant",
+  "level_onefactor",
+  "level_towfactor",
+  "level__threefactor",
+  "level_fourfactor",
+  "leve_five_factor",
+  "factor",
+  "add_deduction",
+  "deduction_factor",
+  "from_min",
+  "to_min"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "late_componant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Late Componant",
+   "options": "Late Attendance Componant"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "level_onefactor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "1"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "level_towfactor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "2"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "level__threefactor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "3"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "level_fourfactor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "4"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "leve_five_factor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "5"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fetch_from": "late_componant.factor",
+   "fieldname": "factor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "factor",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "default": "0",
+   "fetch_from": "late_componant.add_deduction",
+   "fieldname": "add_deduction",
+   "fieldtype": "Check",
+   "label": "Add Deduction"
+  },
+  {
+   "columns": 2,
+   "fetch_from": "late_componant.deduction_factor",
+   "fieldname": "deduction_factor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Deduction Factor",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fetch_from": "late_componant.from_minuts",
+   "fieldname": "from_min",
+   "fieldtype": "Float",
+   "label": "From ",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fetch_from": "late_componant.to_minutes",
+   "fieldname": "to_min",
+   "fieldtype": "Float",
+   "label": "To",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-02-08 13:22:01.534121",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Late Attendance Componant Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

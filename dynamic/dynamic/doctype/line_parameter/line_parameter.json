@@ -1,0 +1,408 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PL.#######",
+ "creation": "2023-01-25 13:29:16.801669",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "linked_data_section",
+  "start_time",
+  "link_type",
+  "break_1",
+  "work_order",
+  "job_card",
+  "acid_wash_basin_section",
+  "awb_l",
+  "column_break_3",
+  "awb_d",
+  "column_break_4",
+  "awb_ph",
+  "column_break_7",
+  "awb_c",
+  "alkali_wash_basin_section",
+  "kwb_ph",
+  "column_break_9",
+  "kwb_c",
+  "slat_basin_section",
+  "ph",
+  "column_break_15",
+  "c",
+  "column_break_14",
+  "tsc",
+  "column_break_19",
+  "drying_oven",
+  "section_break_17",
+  "lb_ph",
+  "column_break_23",
+  "lb_c",
+  "column_break_25",
+  "lb_tsc",
+  "column_break_27",
+  "latex_oven",
+  "polymer_basin_section",
+  "pb_ph",
+  "column_break_31",
+  "pb_c",
+  "column_break_33",
+  "pb_tsc",
+  "column_break_35",
+  "polymer_oven",
+  "main_section",
+  "brush_direction",
+  "column_break_39",
+  "main_oven_f",
+  "column_break_41",
+  "drying_oven_f"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "acid_wash_basin_section",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Acid Wash Basin"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "awb_l",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Line Speed"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "awb_d",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "D- Bruches"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "awb_ph",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "PH"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "awb_c",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "C"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "alkali_wash_basin_section",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Alkali Wash Basin"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "kwb_ph",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "PH"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "kwb_c",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "C"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "slat_basin_section",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Slat Basin"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "ph",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "PH"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "c",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "C"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "tsc",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "TSC"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "drying_oven",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "Drying Oven"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Latex Basin"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "lb_ph",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "PH"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "lb_c",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "C"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "lb_tsc",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "TSC"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_27",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "latex_oven",
+   "fieldtype": "Data",
+   "label": "Latex Oven"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "polymer_basin_section",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Polymer Basin"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "pb_ph",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "PH"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "pb_c",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "C"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "pb_tsc",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "TSC"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "polymer_oven",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Polymer Oven"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "main_section",
+   "fieldtype": "Section Break",
+   "label": "MAIN"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "brush_direction",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "Brush Direction",
+   "translatable": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_39",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "main_oven_f",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Main Oven F"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "column_break_41",
+   "fieldtype": "Column Break",
+   "in_preview": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "drying_oven_f",
+   "fieldtype": "Data",
+   "in_preview": 1,
+   "label": "Drying Oven F"
+  },
+  {
+   "fieldname": "linked_data_section",
+   "fieldtype": "Section Break",
+   "label": "Linked Data"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "start_time",
+   "fieldtype": "Datetime",
+   "in_preview": 1,
+   "label": "Start Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "link_type",
+   "fieldtype": "Select",
+   "label": "Link Type",
+   "options": "Work Order\nJob Card"
+  },
+  {
+   "fieldname": "break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work_order",
+   "fieldtype": "Link",
+   "label": "Work Order",
+   "options": "Work Order"
+  },
+  {
+   "fieldname": "job_card",
+   "fieldtype": "Link",
+   "label": "Job Card",
+   "options": "Job Card"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-25 15:04:14.480438",
+ "modified_by": "Administrator",
+ "module": "dynamic",
+ "name": "LINE PARAMETER",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

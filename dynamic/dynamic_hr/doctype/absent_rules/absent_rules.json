@@ -1,0 +1,88 @@
+{
+ "autoname": "Abs-Rule-.####",
+ "creation": "2020-12-05 13:44:47.486701",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "ruletemplate",
+  "senario",
+  "deduct_absent_from_leave_balance",
+  "leave_type",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Abs-Rule-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "no_copy": 1,
+   "options": "Abs-Rule-.####",
+   "print_hide": 1,
+   "set_only_once": 1
+  },
+  {
+   "default": "Deduction from Salary",
+   "fieldname": "senario",
+   "fieldtype": "Select",
+   "label": "Senario",
+   "options": "Deduction from Salary"
+  },
+  {
+   "fieldname": "ruletemplate",
+   "fieldtype": "Table",
+   "label": "absent rule ",
+   "options": "absent rule templates"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Absent Rules",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "deduct_absent_from_leave_balance",
+   "fieldtype": "Check",
+   "label": "Deduct Absent From Leave Balance"
+  },
+  {
+   "depends_on": "deduct_absent_from_leave_balance",
+   "fieldname": "leave_type",
+   "fieldtype": "Link",
+   "label": "Leave Type",
+   "options": "Leave Type"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-08-23 15:23:46.177542",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Absent Rules",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

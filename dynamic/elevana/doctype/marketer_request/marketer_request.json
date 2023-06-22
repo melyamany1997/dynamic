@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-02-19 14:07:50.364802",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "status",
+  "request_details_section",
+  "marketer_name",
+  "phone_number",
+  "email",
+  "column_break_8",
+  "partner_type",
+  "commission_rate",
+  "address_section",
+  "city",
+  "country",
+  "column_break_13",
+  "address_line",
+  "item_groups_section",
+  "item_groups",
+  "section_break_17",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "MEKTR-REQ-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "MEKTR-REQ-.####"
+  },
+  {
+   "default": "Requested",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Requested\nApproved",
+   "read_only": 1
+  },
+  {
+   "fieldname": "request_details_section",
+   "fieldtype": "Section Break",
+   "label": "Request Details"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone number",
+   "options": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commission_rate",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Commission Rate"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Partner Type",
+   "options": "Sales Partner Type"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Marketer Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City/Twon"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address_line",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Address Line"
+  },
+  {
+   "fieldname": "marketer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Marketer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_groups_section",
+   "fieldtype": "Section Break",
+   "label": "Item Groups"
+  },
+  {
+   "fieldname": "item_groups",
+   "fieldtype": "Table",
+   "label": "Item Groups",
+   "options": "Item Group Detail"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-19 16:18:19.080215",
+ "modified_by": "Administrator",
+ "module": "Elevana",
+ "name": "Marketer Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

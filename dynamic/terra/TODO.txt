@@ -1,0 +1,28 @@
+#update Costcenter
+# Add Link To -- Warehouse 
+# Add Child Table With Manager Users -- Create Child table Branch Managers 
+# Cisrcenter updated
+#Update Stock Entry 
+Create two Stock Entry Type -- 
+-- Transfer 
+-- Reuired Field -- 
+    Intermediate Warehouse -- 
+Mode of payment 
+#add field Series --Data  -- set-once
+-- Add Payment For Shipping From sales  order 
+-- Add new report for stock without values 
+-- asset movment update cost center 
+-- Compare pudget amounty and realay cost 
+-- Exchange Rate Revaluation --for payed invoiced 
+-- make item code read only 
+-- Item Attr -- filters --search craitiaria  /
+#--  Matrial request reason And 
+-- Add link in Matrial cost center   and  Creator user --4h
+-- Add notification on item price -- create or update-- system notificatio and send mail --4h
+-- Matrial request -- create qoutation -- update matrial request status on qoutation -- 4h 
+-- oppotunity create sales order -- matrial request if with item --4h 
+-- create Delivery Date notification for current date --4h 
+-- item request draft = pinding submited = accepted 
+-- data item name  item group description 
+-- item price 
+-- abb 2 cart 1- for draf /for submited 

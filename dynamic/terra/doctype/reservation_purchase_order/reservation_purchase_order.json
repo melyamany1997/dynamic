@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-29 10:51:05.639580",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_order",
+  "purchase_order_line",
+  "item",
+  "current_available_qty",
+  "qty",
+  "reserved_qty",
+  "available_qty_atfer___reservation"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": " Purchase Order",
+   "options": "Purchase Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_order_line",
+   "fieldtype": "Data",
+   "label": " Purchase Order Line",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "purchase_order_line.item_code",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "item ",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": " Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reserved_qty",
+   "fieldtype": "Float",
+   "label": "  Reserved Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_available_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Current Available Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "available_qty_atfer___reservation",
+   "fieldtype": "Data",
+   "label": "Available Qty atfer   Reservation",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-03-27 14:37:00.699296",
+ "modified_by": "Administrator",
+ "module": "Terra",
+ "name": "Reservation Purchase Order",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

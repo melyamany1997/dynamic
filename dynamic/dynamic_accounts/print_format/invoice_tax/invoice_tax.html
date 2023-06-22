@@ -1,0 +1,312 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+
+
+
+{% set print_data = get_invoice_tax_data(doc.name) %} 
+
+<!-- {{ get_invoice_tax_data(doc.name)}} -->
+{% set total_amount = doc.grand_total or doc.rounded_total %} 
+{% set total_discount = print_data.total_discount_amount %} 
+
+{% set total_tax = print_data.total_tax_amount %} 
+
+{% set total_taxable_amount = total_amount %} 
+
+{% set net_after_tax = total_amount + total_tax  %}
+
+{%- set customer = frappe.get_doc("Customer", doc.customer) -%} 
+{%- set company = frappe.get_doc("Company", doc.company) -%}
+{%- set base_url = print_data.server_url or "" -%}
+
+{%- set qr_code_data =  encode_invoice_data(doc.name) -%}
+<div>
+  <div id="header-html" class="hidden-pdf">
+    <div class="print-heading">
+      <h4>
+        <div>فاتوره ضريبية</div>
+        <div>Tax Invoice</div>
+      </h4>
+    </div>
+  </div>
+
+  <div class="row margin-bottom">
+    <div class="col-xs-8">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <td><strong>Invocie No: </strong></td>
+          <td colspan="2">{{ doc.name }}</td>
+          <td><strong>:رقم الفاتوره</strong></td>
+        </tr>
+      </table>
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <td><strong>Invoice Issue Date: </strong></td>
+          <td colspan="2">{{ frappe.utils.format_date(doc.posting_date) }}</td>
+          <td><strong>:تاريخ أصدار الفاتوره</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Date of Supply: </strong></td>
+          <td colspan="2">{{ frappe.utils.format_date(doc.posting_date) }}</td>
+          <td><strong>:تاريخ التوريد</strong></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-4">
+      <!-- Qr Code-->
+      {%- set url =
+		base_url+"/api/method/dynamic.utils.download_pdf?name="+doc.name
+      -%}
+      <img
+        style="margin: 0% !important"
+        id="barcode"
+        src="https://chart.googleapis.com/chart?chs=120x120&amp;cht=qr&amp;chl={{qr_code_data}}"
+        alt=""
+        title="Sales Invoice"
+        width="120"
+        height="120"
+      />
+    </div>
+  </div>
+
+  <div class="row margin-bottom">
+    <div class="col-xs-6">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th>Seller</th>
+          <th colspan="2"></th>
+
+          <th>البائع</th>
+        </tr>
+        <tr>
+          <td><strong>Name: </strong></td>
+          <td colspan="2">{{ company.name  or ''}}</td>
+          <td><strong>:الأسم</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Building No: </strong></td>
+          <td colspan="2">{{ company.buildingnumber  or ''}}</td>
+          <td><strong>:رقم المبنى</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Street Name: </strong></td>
+          <td colspan="2">{{ company.street  or ''}}</td>
+          <td><strong>:أسم الشارع</strong></td>
+        </tr>
+        <tr>
+          <td><strong>District: </strong></td>
+          <td colspan="2">{{ company.governate  or ''}}</td>
+          <td><strong>:الحى</strong></td>
+        </tr>
+        <tr>
+          <td><strong>City: </strong></td>
+          <td colspan="2">{{ company.regioncity  or ''}}</td>
+          <td><strong>:المدينه</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Country: </strong></td>
+          <td colspan="2">{{ company.country_code  or ''}}</td>
+          <td><strong>:البلد</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Postal Code: </strong></td>
+          <td colspan="2"></td>
+          <td><strong>:الرمز البريدي</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Additional No: </strong></td>
+          <td colspan="2"></td>
+          <td><strong>:الرقم الاضافي للعنوان</strong></td>
+        </tr>
+        <tr>
+          <td><strong>VAT Number: </strong></td>
+          <td colspan="2">{{ company.tax_id  or ''}}</td>
+          <td><strong>:رقم تسجيل ضريبه القيمه المضافه</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Other Buyer ID: </strong></td>
+          <td colspan="2">{{company.issuer_id or ''}}</td>
+          <td><strong>:معرف أخر</strong></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-6">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th>Buyer</th>
+          <th colspan="2"></th>
+
+          <th>العميل</th>
+        </tr>
+        <tr>
+          <td><strong>Name: </strong></td>
+          <td colspan="2">{{ customer.customer_name or ''}}</td>
+          <td><strong>:الأسم</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Building No: </strong></td>
+          <td colspan="2">{{ customer.buildingnumber or '' }}</td>
+          <td><strong>:رقم المبنى</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Street Name: </strong></td>
+          <td colspan="2">{{ customer.street or ''}}</td>
+          <td><strong>:أسم الشارع</strong></td>
+        </tr>
+        <tr>
+          <td><strong>District: </strong></td>
+          <td colspan="2">{{ customer.governate or ''}}</td>
+          <td><strong>:الحى</strong></td>
+        </tr>
+        <tr>
+          <td><strong>City: </strong></td>
+          <td colspan="2">{{ customer.regioncity or ''}}</td>
+          <td><strong>:المدينه</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Country: </strong></td>
+          <td colspan="2">{{ customer.country_code or ''}}</td>
+          <td><strong>:البلد</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Postal Code: </strong></td>
+          <td colspan="2"></td>
+          <td><strong>:الرمز البريدي</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Additional No: </strong></td>
+          <td colspan="2"></td>
+          <td><strong>:الرقم الاضافي للعنوان</strong></td>
+        </tr>
+        <tr>
+          <td><strong>VAT Number: </strong></td>
+          <td colspan="2">{{ customer.tax_id or ''}}</td>
+          <td><strong>:رقم تسجيل ضريبه القيمه المضافه</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Other Buyer ID: </strong></td>
+          <td colspan="2">{{ customer.receiver_id or ''}}</td>
+          <td><strong>:معرف أخر</strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="margin-bottom">
+    <table class="table table-bordered table-condensed">
+      <tr>
+        <th>
+          <div>Nature of goods or services</div>
+          <div>تفاصيل السلع و الخدمات</div>
+        </th>
+        <th>
+          <div>Unit price</div>
+          <div>سعر الوحده</div>
+        </th>
+        <th>
+          <div>Quantity</div>
+          <div>الكمية</div>
+        </th>
+        <th>
+          <div>Taxable Amount</div>
+          <div>المبلغ الخاضع للضريبة</div>
+        </th>
+        <th>
+          <div>Discount</div>
+          <div>خصومات</div>
+        </th>
+        <th>
+          <div>Tax Rate</div>
+          <div>نسبه الضريبه</div>
+        </th>
+        <th>
+          <div>Tax Amount</div>
+          <div>مبلغ الضريبه</div>
+        </th>
+        <th>
+          <div>tem Subtotal (Including VAT)</div>
+          <div>المجموع (شامل ضريبه القيمه المضافه)</div>
+        </th>
+      </tr>
+
+      {% for item in doc.items %} 
+
+      <tr>
+        <td>
+          {{ item.item_code }}-{{ item.item_name }}-{{ item.description }}
+        </td>
+        <td>
+          {{ frappe.utils.fmt_money(item.rate + item.discount_amount,
+          currency=doc.currency) }}
+        </td>
+        <td>{{ item.qty}}</td>
+        <td>{{ frappe.utils.fmt_money(item.amount,currency=doc.currency) }}</td>
+        <td>
+          {{ frappe.utils.fmt_money(item.discount_amount, currency=doc.currency) }}
+        </td>
+        <td>{{ (item.tax_rate or 0)}}</td>
+        <td>{{ (item.tax_amount or 0)}}</td>
+        <td>
+          {{ frappe.utils.fmt_money(item.amount + (item.tax_amount or 0),
+          currency=doc.currency) }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+
+
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th>Total Amounts</th>
+          <th colspan="2"></th>
+
+          <th>:أجمالي المبلغ</th>
+        </tr>
+        <tr>
+          <td><strong>Total (Excluding VAT): </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_amount + total_discount,currency=doc.currency) }}
+          </td>
+          <td><strong>:الاجمالي (غير شامل ضريبة القيمة المضافه)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Discount: </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_discount,currency=doc.currency) }}
+          </td>
+          <td><strong>:مجموع الخصومات</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Total Taxable Amount (Excluding VAT): </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_taxable_amount,currency=doc.currency) }}
+          </td>
+          <td>
+            <strong
+              >:الأجمالى الخاضع للضريبه(غير شامل ضريبة القيمة المضافه)</strong
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Total VAT: </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(total_tax,currency=doc.currency) }}
+          </td>
+          <td><strong>:مجموع ضريبة القيمة المضافة</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Total Amount Due: </strong></td>
+          <td colspan="2">
+            {{ frappe.utils.fmt_money(net_after_tax,currency=doc.currency) }}
+          </td>
+          <td><strong>:أجمالى المبلغ المستحق</strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

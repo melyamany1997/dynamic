@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-03-26 11:13:08.172915",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "plate_number",
+  "serial_no",
+  "sim_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plate Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Serial No"
+  },
+  {
+   "fieldname": "sim_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sim No"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-03-26 11:13:08.172915",
+ "modified_by": "Administrator",
+ "module": "gebco",
+ "name": "Cars Plate Numbers For Request",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

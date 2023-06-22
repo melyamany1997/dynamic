@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "filed:phone_number",
+ "creation": "2022-09-18 14:58:10.912756",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "setting_data_section",
+  "instance_url",
+  "product_id",
+  "phone_number",
+  "column_break_4",
+  "api_token",
+  "phone_id",
+  "status",
+  "messsage_section_section",
+  "messgae",
+  "messgae_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "setting_data_section",
+   "fieldtype": "Section Break",
+   "label": "Setting Data"
+  },
+  {
+   "fieldname": "instance_url",
+   "fieldtype": "Data",
+   "label": "INSTANCE URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product_id",
+   "fieldtype": "Data",
+   "label": "PRODUCT ID",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Phone number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "api_token",
+   "fieldtype": "Data",
+   "label": "API TOKEN",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "PHONE ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nDeactivate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "messsage_section_section",
+   "fieldtype": "Section Break",
+   "label": "Messsage Section "
+  },
+  {
+   "fieldname": "messgae",
+   "fieldtype": "Small Text",
+   "label": "Messgae",
+   "reqd": 1
+  },
+  {
+   "default": "text",
+   "fieldname": "messgae_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Messgae Type",
+   "options": "link\nmedia\ntext",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-09-18 17:01:28.398255",
+ "modified_by": "Administrator",
+ "module": "dynamic",
+ "name": "WhatsApp",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Analytics",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

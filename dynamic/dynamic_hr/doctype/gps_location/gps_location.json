@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:location_name",
+ "creation": "2022-08-30 14:38:13.028222",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "location_name",
+  "section_break_2",
+  "location",
+  "column_break_5",
+  "distance",
+  "lattitude",
+  "longtitude"
+ ],
+ "fields": [
+  {
+   "fieldname": "location_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Location Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lattitude",
+   "fieldtype": "Data",
+   "label": "Lattitude",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "longtitude",
+   "fieldtype": "Data",
+   "label": "Longtitude",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "distance",
+   "fieldtype": "Float",
+   "label": "Distance"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-30 14:51:20.448576",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "GPS Location",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

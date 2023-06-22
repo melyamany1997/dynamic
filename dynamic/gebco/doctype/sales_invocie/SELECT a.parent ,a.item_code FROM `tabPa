@@ -1,0 +1,7 @@
+SELECT  a.parent ,a.item_code FROM `tabPacked Item`  a
+ INNER join `tabItem` b 
+ INNER join `tabSales Invoice` c
+on a.item_code = b.item_code  AND  c.name = a.parent
+WHERE
+b.is_stock_item = 0  and a.parent  = "Sales Invoice" 
+group by c.name; 

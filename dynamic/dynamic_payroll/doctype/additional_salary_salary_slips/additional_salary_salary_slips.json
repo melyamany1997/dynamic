@@ -1,0 +1,30 @@
+{
+ "creation": "2021-03-28 16:18:09.273224",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "salary_slip"
+ ],
+ "fields": [
+  {
+   "fieldname": "salary_slip",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Salary Slip",
+   "options": "Salary Slip",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-03-28 16:18:09.273224",
+ "modified_by": "Administrator",
+ "module": "Dynamic Payroll",
+ "name": "Additional Salary Salary Slips",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-05-17 11:19:00.003758",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "amount_from",
+  "amount_to",
+  "commission_amount",
+  "commission_rate"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "amount_from",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "From"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "amount_to",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "To"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "commission_amount",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Commission Amount"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "commission_rate",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Commission Rate"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-05-17 14:29:33.156420",
+ "modified_by": "Administrator",
+ "module": "dynamic",
+ "name": "Commission Template Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

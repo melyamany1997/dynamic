@@ -1,0 +1,133 @@
+{
+ "autoname": "format:Attendance-{payroll_period}",
+ "creation": "2020-11-19 14:48:45.783646",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "payroll_period",
+  "company",
+  "payroll_effect_date",
+  "amended_from",
+  "dates_section",
+  "from_date",
+  "payroll_start_date",
+  "column_break_8",
+  "to_date",
+  "payroll_end_date"
+ ],
+ "fields": [
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "payroll_period.attendance_start_date",
+   "fetch_if_empty": 1,
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From Date",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "payroll_period.attendance_end_date",
+   "fetch_if_empty": 1,
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "To Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Attendance Calculation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "payroll_period.end_date",
+   "fieldname": "payroll_effect_date",
+   "fieldtype": "Date",
+   "label": "Payroll Effect Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "payroll_month.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "payroll_period",
+   "fieldtype": "Link",
+   "label": "Payroll Period",
+   "options": "Payroll Period",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "dates_section",
+   "fieldtype": "Section Break",
+   "label": "Dates"
+  },
+  {
+   "fetch_from": "payroll_period.attendance_start_date",
+   "fieldname": "payroll_start_date",
+   "fieldtype": "Date",
+   "label": "Payroll Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "payroll_period.attendance_end_date",
+   "fieldname": "payroll_end_date",
+   "fieldtype": "Date",
+   "label": "Payroll End Date",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2021-07-06 17:12:00.942585",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Attendance Calculation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

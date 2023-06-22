@@ -1,0 +1,388 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-08-03 13:43:13.173347",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "installation_type",
+  "column_break_3",
+  "installation_order",
+  "installation_request",
+  "sales_order",
+  "customer_info_section",
+  "customer",
+  "customer_name",
+  "customer_phone_number",
+  "column_break_24",
+  "delegate",
+  "delegate_name",
+  "delegate_phone_number",
+  "car_section_section",
+  "car",
+  "car_model",
+  "chasis_no",
+  "column_break_17",
+  "car_type",
+  "car_brand",
+  "car_color",
+  "motor_no",
+  "accessories_section",
+  "installation_accessories",
+  "gps_details_section",
+  "gps_type",
+  "gps_item_code_alt",
+  "gps_item_code",
+  "gps_serial_number",
+  "gps_warehouse",
+  "column_break_11",
+  "gps_series",
+  "gps_serial_number2",
+  "sim_details_section",
+  "sim_supplier",
+  "sim_supplier_name",
+  "column_break_37",
+  "sim_number",
+  "sim_provider",
+  "sim_serial",
+  "team_details_section",
+  "team",
+  "installation_team_detail",
+  "engineer_name",
+  "technical_name",
+  "notes_section",
+  "notes",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "installation_order",
+   "fieldtype": "Link",
+   "label": "Installation Order",
+   "mandatory_depends_on": "eval:doc.installation_type == \"New\"",
+   "options": "Installation Order"
+  },
+  {
+   "fieldname": "installation_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Installation Type",
+   "options": "\nNew\nRenew",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "options": "INS-car-.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "car",
+   "fieldtype": "Link",
+   "label": "Car",
+   "options": "Car"
+  },
+  {
+   "fieldname": "car_section_section",
+   "fieldtype": "Section Break",
+   "label": "Car Details"
+  },
+  {
+   "fetch_from": "car.car_model",
+   "fieldname": "car_model",
+   "fieldtype": "Data",
+   "label": "Car Model"
+  },
+  {
+   "fetch_from": "car.car_type",
+   "fieldname": "car_type",
+   "fieldtype": "Data",
+   "label": "Car Type"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "car.car_brand",
+   "fieldname": "car_brand",
+   "fieldtype": "Data",
+   "label": "Car Brand"
+  },
+  {
+   "fieldname": "customer_info_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Info"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delegate",
+   "fieldtype": "Link",
+   "label": "Delegate",
+   "options": "Customer Delegate"
+  },
+  {
+   "fetch_from": "delegate.delegate_name",
+   "fetch_if_empty": 1,
+   "fieldname": "delegate_name",
+   "fieldtype": "Data",
+   "label": "Delegate Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "delegate_phone_number",
+   "fieldtype": "Data",
+   "label": "Delegate Phone Number"
+  },
+  {
+   "fieldname": "customer_phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "accessories_section",
+   "fieldtype": "Section Break",
+   "label": "Accessories Details"
+  },
+  {
+   "fieldname": "team_details_section",
+   "fieldtype": "Section Break",
+   "label": "Team Details"
+  },
+  {
+   "fieldname": "installation_team_detail",
+   "fieldtype": "Table",
+   "label": "Installation Team Detail",
+   "options": "Installation Team Detail"
+  },
+  {
+   "fieldname": "gps_details_section",
+   "fieldtype": "Section Break",
+   "label": "GPS Details"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.gps_type\n",
+   "fetch_from": "gps_serial_number.name",
+   "fieldname": "gps_series",
+   "fieldtype": "Data",
+   "label": "GPS IMEI",
+   "mandatory_depends_on": "eval:doc.gps_type\n"
+  },
+  {
+   "fieldname": "engineer_name",
+   "fieldtype": "Data",
+   "label": "Engineer Name"
+  },
+  {
+   "fieldname": "technical_name",
+   "fieldtype": "Data",
+   "label": "Technical Name"
+  },
+  {
+   "fieldname": "gps_type",
+   "fieldtype": "Select",
+   "label": "GPS Type",
+   "options": "\nInternal\nExternal"
+  },
+  {
+   "fieldname": "team",
+   "fieldtype": "Link",
+   "label": "Team",
+   "options": "Installation Team"
+  },
+  {
+   "depends_on": "eval:doc.gps_type == 'Internal'",
+   "fieldname": "gps_warehouse",
+   "fieldtype": "Link",
+   "label": "GPS Warehouse",
+   "mandatory_depends_on": "eval:doc.gps_type == 'Internal'",
+   "options": "Warehouse"
+  },
+  {
+   "depends_on": "eval:doc.gps_type == \"Internal\"",
+   "fieldname": "gps_item_code",
+   "fieldtype": "Link",
+   "label": "GPS Item Code",
+   "mandatory_depends_on": "eval:doc.gps_type == \"Internal\"",
+   "options": "Item"
+  },
+  {
+   "fieldname": "sim_details_section",
+   "fieldtype": "Section Break",
+   "label": "SIM Details"
+  },
+  {
+   "fieldname": "sim_supplier",
+   "fieldtype": "Link",
+   "label": "SIM Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fetch_from": "sim_supplier.supplier_name",
+   "fetch_if_empty": 1,
+   "fieldname": "sim_supplier_name",
+   "fieldtype": "Data",
+   "label": "SIM Supplier Name"
+  },
+  {
+   "fieldname": "column_break_37",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sim_number",
+   "fieldtype": "Data",
+   "label": "SIM Number"
+  },
+  {
+   "fieldname": "sim_serial",
+   "fieldtype": "Data",
+   "label": "SIM serial"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Car Installation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "installation_order.installation_request",
+   "fieldname": "installation_request",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "label": "Installation Request",
+   "options": "Installation Request",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.gps_type == \"Internal\"",
+   "fieldname": "gps_serial_number",
+   "fieldtype": "Link",
+   "label": "GPS Serial Number",
+   "mandatory_depends_on": "eval:doc.gps_type == \"Internal\"",
+   "options": "Serial No"
+  },
+  {
+   "depends_on": "eval:doc.gps_type\n",
+   "fetch_from": "gps_serial_number.serial2",
+   "fetch_if_empty": 1,
+   "fieldname": "gps_serial_number2",
+   "fieldtype": "Data",
+   "label": "GPS Serial"
+  },
+  {
+   "fetch_from": "installation_request.sales_order",
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "installation_accessories",
+   "fieldtype": "Table",
+   "label": "Installation Accessories",
+   "options": "Installation Accessories"
+  },
+  {
+   "fetch_from": "car.chasis_no",
+   "fieldname": "chasis_no",
+   "fieldtype": "Data",
+   "label": "Chasis No"
+  },
+  {
+   "fetch_from": "car.motor_no",
+   "fieldname": "motor_no",
+   "fieldtype": "Data",
+   "label": "Motor NO"
+  },
+  {
+   "depends_on": "eval:doc.gps_type == \"External\"",
+   "fieldname": "gps_item_code_alt",
+   "fieldtype": "Link",
+   "label": "GPS Item Alt",
+   "options": "Item"
+  },
+  {
+   "fetch_from": "car.car_color",
+   "fieldname": "car_color",
+   "fieldtype": "Link",
+   "label": "Car Color",
+   "options": "Car Color"
+  },
+  {
+   "default": "Etisalat",
+   "fieldname": "sim_provider",
+   "fieldtype": "Select",
+   "label": "SIM Provider",
+   "options": "Vodafone\nOrange\nEtisalat"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-05 15:35:15.476219",
+ "modified_by": "Administrator",
+ "module": "Hardware Installations",
+ "name": "Car Installation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

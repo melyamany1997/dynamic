@@ -1,0 +1,39 @@
+{
+ "creation": "2021-05-23 10:45:35.883112",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "level",
+  "factor"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "level",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Level",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "factor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Factor (in Days)",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-05-23 10:54:13.837179",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Less Time Penalty Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

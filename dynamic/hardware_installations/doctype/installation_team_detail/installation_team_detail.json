@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-08-02 15:54:15.800265",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "employee_email"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.user_id",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Email"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-11-28 15:06:54.491981",
+ "modified_by": "Administrator",
+ "module": "Hardware Installations",
+ "name": "Installation Team Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "restrict_to_domain": "Gebco",
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

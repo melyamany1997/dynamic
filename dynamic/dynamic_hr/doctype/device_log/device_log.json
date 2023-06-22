@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "autoname": "format:Log-{enroll_no}-{log_time}-{####}",
+ "creation": "2020-11-18 16:59:15.633920",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "enroll_no",
+  "log_type",
+  "punch",
+  "column_break_6",
+  "log_time",
+  "log_date",
+  "time_log",
+  "device",
+  "device_name",
+  "shift",
+  "shift_date"
+ ],
+ "fields": [
+  {
+   "fetch_from": "employee.attendance_device_id",
+   "fetch_if_empty": 1,
+   "fieldname": "enroll_no",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Enroll No",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "log_time",
+   "fieldtype": "Datetime",
+   "in_filter": 1,
+   "label": "Log"
+  },
+  {
+   "default": "0",
+   "fieldname": "log_type",
+   "fieldtype": "Data",
+   "label": "Log Type",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "punch",
+   "fieldtype": "Int",
+   "label": "Punch",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "device",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Device",
+   "options": "Device",
+   "read_only": 1
+  },
+  {
+   "fieldname": "log_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Log  Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "device.device_name",
+   "fieldname": "device_name",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Device Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "time_log",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Log Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "device.shift",
+   "fetch_if_empty": 1,
+   "fieldname": "shift",
+   "fieldtype": "Link",
+   "label": "Shift",
+   "options": "Shift Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shift_date",
+   "fieldtype": "Date",
+   "label": "Shift Date",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2022-02-22 13:37:09.186227",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Device Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "log_time",
+ "sort_order": "ASC",
+ "track_changes": 1
+}

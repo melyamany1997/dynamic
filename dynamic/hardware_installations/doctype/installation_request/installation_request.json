@@ -1,0 +1,220 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-08-02 16:32:55.801138",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_order",
+  "posting_date",
+  "column_break_1",
+  "naming_series",
+  "section_break_3",
+  "customer",
+  "customer_name",
+  "customer_phone_number",
+  "column_break_2",
+  "delegate",
+  "delegate_name",
+  "delegate_phone_number",
+  "car_details_section",
+  "total_cars",
+  "column_break_14",
+  "completed_cars",
+  "ordered_cars",
+  "column_break_16",
+  "pending_cars",
+  "not_ordered_cars",
+  "section_break_18",
+  "notes",
+  "section_break_20",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Order",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "sales_order.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "INS-Req-.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delegate",
+   "fieldtype": "Link",
+   "label": "Delegate",
+   "options": "Customer Delegate"
+  },
+  {
+   "fetch_from": "delegate.delegate_name",
+   "fieldname": "delegate_name",
+   "fieldtype": "Data",
+   "label": "Delegate Name"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fetch_from": "customer.mobile_no",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fetch_from": "delegate.delegate_no",
+   "fetch_if_empty": 1,
+   "fieldname": "delegate_phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "car_details_section",
+   "fieldtype": "Section Break",
+   "label": "Car Details"
+  },
+  {
+   "fieldname": "total_cars",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Cars"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "completed_cars",
+   "fieldtype": "Int",
+   "label": "Completed Cars",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "pending_cars",
+   "fieldtype": "Int",
+   "label": "Pending Cars",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Installation Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "ordered_cars",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Ordered Cars",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "not_ordered_cars",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Not Ordered Cars",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-08-03 13:47:31.149265",
+ "modified_by": "Administrator",
+ "module": "Hardware Installations",
+ "name": "Installation Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "customer,sales_order",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "customer"
+}

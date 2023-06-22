@@ -1,0 +1,102 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-05-30 10:18:22.273640",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends": "Accounting",
+ "extends_another_page": 1,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Cheques",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cheques",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cheque",
+   "link_to": "Cheque",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Entry",
+   "link_to": "Payment Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Journal Entry",
+   "link_to": "Journal Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cheques Report",
+   "link_to": "Cheques Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cheque Summary Report",
+   "link_to": "Cheque Summary Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cheque States History Report",
+   "link_to": "Cheque States History Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-07-24 13:19:11.873457",
+ "modified_by": "Administrator",
+ "module": "Cheques",
+ "name": "Cheques",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "restrict_to_domain": "Cheques",
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Cheque",
+   "link_to": "Cheque",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Cheques Report",
+   "link_to": "Cheques Report",
+   "type": "Report"
+  }
+ ]
+}

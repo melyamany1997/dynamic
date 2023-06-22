@@ -1,0 +1,229 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-02-07 16:58:20.294305",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "column_break_2",
+  "naming_series",
+  "company",
+  "employee_details_section",
+  "employee",
+  "employee_name",
+  "column_break_7",
+  "department",
+  "penalty_details_section",
+  "penalty_type",
+  "column_break_11",
+  "salary_component",
+  "section_break_12",
+  "amount_type",
+  "amount",
+  "column_break_15",
+  "payroll_effect_date",
+  "total_amount",
+  "condition_and_formula_section",
+  "amount_based_on_formula",
+  "formula",
+  "notes_section",
+  "notes",
+  "additional_salary",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "options": "EMP-PLT-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "penalty_details_section",
+   "fieldtype": "Section Break",
+   "label": "Penalty Details"
+  },
+  {
+   "fieldname": "penalty_type",
+   "fieldtype": "Link",
+   "label": "Penalty Type",
+   "options": "Penalty Type",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "penalty_type.salary_component",
+   "fetch_if_empty": 1,
+   "fieldname": "salary_component",
+   "fieldtype": "Link",
+   "label": "Salary Component",
+   "options": "Salary Component",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payroll_effect_date",
+   "fieldtype": "Date",
+   "label": "Payroll Effect Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount_type",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Amount Type",
+   "options": "Factor\nAmount"
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Float",
+   "label": "Amount / Factor",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "condition_and_formula_section",
+   "fieldtype": "Section Break",
+   "label": "Condition and Formula"
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "additional_salary",
+   "fieldtype": "Link",
+   "label": "Additional Salary",
+   "options": "Additional Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Penalty",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "salary_component.amount_based_on_formula",
+   "fieldname": "amount_based_on_formula",
+   "fieldtype": "Check",
+   "label": "Amount based on formula",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "salary_component.formula",
+   "fieldname": "formula",
+   "fieldtype": "Code",
+   "label": "Formula",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-08 12:36:09.385643",
+ "modified_by": "Administrator",
+ "module": "Dynamic Payroll",
+ "name": "Employee Penalty",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

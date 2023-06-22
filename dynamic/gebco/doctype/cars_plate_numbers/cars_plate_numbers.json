@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-03-21 13:49:12.963096",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "plate_number",
+  "status",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Car",
+   "options": "Car",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInActice"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-03-22 09:36:19.347330",
+ "modified_by": "Administrator",
+ "module": "gebco",
+ "name": "Cars Plate Numbers",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

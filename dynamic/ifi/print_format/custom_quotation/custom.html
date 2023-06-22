@@ -1,0 +1,226 @@
+
+
+<!--<h2><div>Quotation</div>-->
+<!--<br><small class="sub-heading">{{ doc.name }}</small>	-->
+<!--</h2>-->
+
+<div class="row">
+    <div class="col-xs-2 col-2">
+        <img src="/assets/dynamic/images/logo_ifi.jpeg"  width='100px' height='100px' >
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <p style="">
+                    IFI -Islam Farahat Innovations
+            27 Abd Al Hamid Abu Hief
+            El-Nozha, Heliopolis
+            Cairo, Egypt 4857 EG
+            +20 227716813
+            sales@ifiegypt.com
+            http://www.ifiegypt.com
+        </p>
+</div>
+</div>
+<!--end  first row-->
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+       <p style="font-weight: bold;color: black;font-size:30px">  Estimate </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+       <b>ADDRESS</b> 
+    </div>
+    
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <b>SHIP TO</b>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <b>ESTIMATE NO. </b>{{doc.name}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        {%if doc.quotation_to == 'Customer'%}
+        {% set cst_doc= frappe.get_doc('Customer',doc.party_name)%}
+        {% set street_address = get_cst_address(party_type="Customer",party=doc.party_name) %}
+        <span>{{street_address}}</span>
+       {%endif%}
+    </div>
+    
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <span>{{doc.party_name}}</span>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <b>Date </b>{{doc.transaction_date}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+       <b></b> 
+    </div>
+    
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <b></b>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <b>EXPIRATION DATE </b>{{doc.valid_till}}
+    </div>
+</div>
+
+
+<hr>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+       <b>CRANE:</b>  {{frappe.utils.fmt_money(doc.crean_amount,currency=doc.currency)}}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+       <b>Upon site visit</b> 
+    </div>
+    
+</div>
+
+
+<div class="row section-break" data-label="">
+    <div class="col-xs-12 column-break">
+    <table class="table table-bordered table-condensed">
+        <thead>
+				<tr>
+				    <th style="width: 40px" class="table-sr">Sr</th>
+				    <th style="width: 500px;" class="" data-fieldname="items" data-fieldtype="Table">Description</th>
+				    <th style="width: 10px;" class="text-right" data-fieldname="items" data-fieldtype="Table">Quantity</th>
+				    <th style="width: 10px;" class="text-right" data-fieldname="items" data-fieldtype="Table">Rate</th>
+				    <th style="width: 100px;" class="text-right" data-fieldname="items" data-fieldtype="Table">Amount</th>
+				</tr>
+		</thead>
+		
+		<tbody>
+		     {% for item in doc.items%}
+			    <tr>
+			        <td class="table-sr">{{item.idx}}</td>
+			        <td class="table-sr">{{item.description}}</td>
+			        <td class="table-sr">{{item.qty}}</td>
+			        <td class="table-sr"> {{frappe.utils.fmt_money(item.rate,currency=doc.currency)}}</td>
+			        <td class="table-sr">  {{frappe.utils.fmt_money(item.amount,currency=doc.currency)}}</td>
+			    </tr>
+			    {%endfor%}
+	    </tbody>
+        </table>
+			
+			   
+    </div>
+</div>
+
+
+<div class="row section-break" data-label="">
+			<div class="col-xs-6 column-break">
+			    {% if doc.terms%}
+                 Terms:   {{doc.terms}}
+                {% endif %}
+			    </div>
+			<div class="col-xs-6 column-break">
+    			    <div class="row  data-field" data-fieldname="total_qty" data-fieldtype="Float">
+        				<div class="col-xs-5">
+        					<label>Total Quantity: </label>
+        				</div>
+        				<div class="col-xs-7 text-right value">
+        					{{doc.total_qty}}
+        				</div>
+    			</div>
+        			<div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <b>CRANE: </b>
+                            </div>
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <span style='float:right;color:1F272E;font-size: 9pt;font-family: Inter, "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;'>{{frappe.utils.fmt_money(doc.crean_amount,currency=doc.currency)}}</span>
+                            </div>
+                    </div>
+    		    	    
+			    <div class="row  mt-2">
+                		<div class="col-xs-5">
+                			<label>Total</label></div>
+                		<div class="col-xs-7 text-right">
+                			{{frappe.utils.fmt_money(doc.total,currency=doc.currency)}}
+                		</div>
+                </div>
+                <div class="row  data-field" data-fieldname="grand_total" data-fieldtype="Currency">
+        				<div class="col-xs-5">
+        					<label>Grand Total: </label>
+        				</div>
+        				<div class="col-xs-7 text-right value">
+                    	{{frappe.utils.fmt_money(doc.grand_total,currency=doc.currency)}}
+                    	</div>
+    			</div>
+                
+                
+                <div class="row important data-field" data-fieldname="rounded_total" data-fieldtype="Currency">
+        				<div class="col-xs-5">
+        					<label>Rounded Total: </label>
+        				</div>
+        				<div class="col-xs-7 text-right value">
+        	                {{frappe.utils.fmt_money(doc.rounded_total,currency=doc.currency)}}
+        				</div>
+		    	</div>
+		    </div>
+		    
+		    <div class="row section-break" data-label="">
+    			<div class="col-xs-12 column-break">
+    				<div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center; margin-top:10px;">
+                            <p>All prices are including 14% VAT</p>
+                        </div>
+                    </div>
+    			</div>
+	        </div>
+	        
+	        <div class="row section-break" data-label="">
+        			<div class="col-xs-6 column-break">
+        				<div><p style=" margin-top:10px;">Accepted By</p></div>
+        			</div>
+        			<div class="col-xs-6 column-break">
+        				<div>
+                    <p style=" margin-top:10px;">Accepted Date</p></div>
+        			</div>
+        	</div>
+</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

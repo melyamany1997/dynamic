@@ -1,0 +1,33 @@
+div {
+  font-size: 18px !important;
+}
+
+.underline {
+  text-decoration-line: underline;
+  text-decoration-style: double;
+}
+
+.box {
+  text-align: center;
+  background-color: lightblue;
+  /* width: 300px; */
+  border: 1px solid black;
+  padding: 5%;
+  margin: 10%;
+  height: 30px;
+}
+.header {
+  color: mediumblue;
+}
+.serial {
+  color: red;
+  /* width: max-content; */
+}
+
+.amount-egp {
+  width: 120px;
+}
+
+.cent-egp {
+  width: 60px;
+}

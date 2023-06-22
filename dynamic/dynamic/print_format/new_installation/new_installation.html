@@ -1,0 +1,536 @@
+<style>
+    .print-format table,
+    .print-format tr,
+    .print-format td,
+    .print-format div,
+    .print-format p {
+        font-family: Monospace;
+        font-size: 18;
+        font-weight: 700 ;
+
+    }
+
+
+    @media screen {
+
+        /* css styles for the preview */
+        .print-format {
+            margin: 10;
+            padding: 10;
+        }
+
+    }
+
+    @media print {
+
+        /* css styles for the printing */
+        .print-format {
+            margin: 10;
+            padding: 10;
+        }
+
+
+    }
+</style>
+{%- set company = frappe.get_doc("Company", doc.company) -%}
+{% set cust_delegate = frappe.get_doc("Customer Delegate",doc.delegate)%}
+{%if doc.installation_accessories[0] %}
+{%set item = doc.installation_accessories[0]%}
+{% endif %}
+
+{% set items = frappe.db.get_list("Item",filters={"item_group":"Queclink devices"},fields=['name'],pluck='name')%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<div id=''> <!---start home-->
+
+    <div id="header-html" class="hidden-pdf">
+        <div class="print-heading">
+            <div class="row">
+                <div class="col-xs-5 bg-warning">
+                    <div dir="rtl" style="text-align: right;"><strong>{{_("Egyptian Co. For Tracking & Information
+                            Technology")}}</strong></div>
+                </div>
+                <div class="col-xs-3">
+                    <div dir="rtl"><img class="img1" src="/assets/dynamic/images/gepco_installation.jpg" alt="" /></div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div dir="rtl" style="text-align: rigth;"><strong>{{_("المصرية لخدمات التتبع وتكنولوجيا
+                            المعلومات")}}</strong></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- data_row -->
+    <div class="row" style="margin-top:3px;">
+        <div class="col-xs-5" dir="rtl">
+            التاريخ: {{doc.get_formatted("creation")}}
+        </div>
+        <div class="col-xs-7" dir="rtl">
+            <strong style="padding-right:3px;">اسم الشركة/العميل:</strong>
+            <span>{{doc.customer}}</span>
+        </div>
+
+    </div>
+
+    <!-- 1-الغرض -->
+    <div class="row" style="margin-top:5px;" dir="rtl">
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <p style="float:right;">1-الغرض</p><br>
+        </div>
+    </div>
+    <div class="row" style="margin-top:2px;" dir="rtl">
+        <div class="col-xs-12" dir="rtl">
+            <div class="form-check col-xs-3 bg-warning">
+                <input class="form-check-input" type="checkbox" value="Checked" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    صيانه
+                </label>
+            </div>
+            <div class="form-check col-xs-3 bg-warning">
+                <div class="check"></div>
+                <label class="form-check-label" for="flexCheckDefault">
+                    تركيب
+                </label>
+            </div>
+            <div class="form-check col-xs-3 bg-warning">
+                <input type="checkbox" name="vehicle3" value="Boat">
+                <label class="form-check-label" for="flexCheckDefault">
+                    فك
+                </label>
+            </div>
+            <div class="form-check col-xs-3 bg-warning">
+                <input type="checkbox" name="vehicle3" value="Boat">
+                <label class="form-check-label" for="flexCheckDefault">
+                    استبدال
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- 1-بيانات الشركه -->
+    <div class="row" style="margin-top:5px;" dir="rtl">
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <p style="float:right;">2-بيانات الشركة</p>
+        </div>
+    </div>
+    <div class="row" style="margin-top:2px;" dir="rtl">
+        <div class="col-xs-12">
+            <table id="tb1" dir="rtl">
+                <thead>
+                    <tr>
+                        <th style="text-align: right; width:30% ;">اسم المندوب</th>
+                        <th colspan="4" style="text-align: center;">{{doc.delegate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>تحقيق الشخصية</td>
+                        <td colspan="4">
+                            {%if cust_delegate.delegate_id|length == 14%}
+                            {% for i in cust_delegate.delegate_id %}
+                            <span class="sp1">{{i}}</span>
+                            {% endfor %}
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">عنوان الشركة</td>
+                        <td rowspan="2" style="text-align: right; width:35% ;">{{doc.customer}}</td>
+                        <td rowspan="2" style="text-align: right; width:15% ;">رقم التليفون</td>
+                        <td>{{cust_delegate.delegate_no}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--بيانات المركه-->
+    <div class="row ">
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <span>{{_("3-بيانات المركبة")}}</span>
+        </div>
+        <div class="col-xs-12" dir="rtl">
+            <table id="tb1" dir="rtl">
+                <thead>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("ماركة")}}</th>
+                        <th style="text-align: right; width:20% ;">{{doc.car_brand or ''}}</th>
+                        <th style="text-align: right; width:20% ;">{{_("موديل")}}</th>
+                        <th style="text-align: right; width:15% ;">{{doc.car_model}}</th>
+                        <th style="text-align: right; width:15% ;">{{_("اللون")}}</th>
+                        <th style="text-align: right; width:10% ;">{{doc.car_color or ''}}</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("رقم اللوحه")}}</th>
+                        <th style="text-align: right; width:20% ;">{{doc.car or ''}}</th>
+                        <th style="text-align: right; width:20% ;">{{_("شاسية")}}</th>
+                        <th style="text-align: right; width:15% ;">{{doc.chasis_no or ''}}</th>
+                        <th style="text-align: right; width:15% ;">{{_("الموتور")}}</th>
+                        <th style="text-align: right; width:10% ;">{{doc.motor_no or ''}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--بيانات الجهاز-->
+    <div class="row ">
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <!--<span>{{_("4-بيانات الجهاز القديم:")}} ....................</span>-->
+        </div>
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <span>{{_("5-بيانات الجهاز :")}}</span>
+        </div>
+        <div class="col-xs-12" dir="rtl">
+            <table id="tb1" dir="rtl">
+                <thead>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("النوع")}}</th>
+                        <th style="width:80% ;text-align: right;">
+                            <!--   {%if doc.gps_type == "Internal"%}
+                          {{doc.gps_item_code}}
+                          {%endif%} -->
+                            {% if doc.gps_type == "Internal"%}
+                            <span class='pl' style="text-align:right">{{doc.gps_item_code}}</span>
+                            {% elif doc.gps_type == "External" %}
+                            <span class='pl' style="text-align:right">{{doc.gps_item_code_alt}}</span>
+                            {%endif%}
+
+                            <!--
+                          <div class="row">
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" >
+                               <span class='pl'><input type="checkbox" name="7_6" value="7_6" /> GV55</span>
+                              </div>
+                              
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" >
+                               <input type="checkbox" name="7_6" value="7_6" /> FM1120
+                              </div>
+                              
+                               <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" >
+                               <input type="checkbox" name="7_6" value="7_6" /> FM5300
+                              </div>
+                              
+                               <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" style="text-align: center;">
+                               <input type="checkbox" name="7_6" value="7_6" /> FMA120
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" >
+                               <span ><input type="checkbox" name="7_6" value="7_6" /> DT340C</span>
+                              </div>
+                              
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <input type="checkbox" name="7_6" value="7_6" /> DT350
+                              </div>
+                              
+                               <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <input type="checkbox" name="7_6" value="7_6" /> DT312
+                              </div>
+                              
+                               <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <input type="checkbox" name="7_6" value="7_6" /> DT300
+                              </div>
+                              
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" >
+                               <input type="checkbox" name="7_6" value="7_6" /> DT340
+                              </div>
+                          </div>
+                          
+                          -->
+                            <!--  <div class="row">
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                               <input type="checkbox" name="7_6" value="7_6" /> DT320C
+                              </div>
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <input type="checkbox" name="7_6" value="7_6" /> DT350
+                              </div>
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                               <input type="checkbox" name="7_6" value="7_6" /> DT312
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6" style="text-align: center;">
+                               <span class='pl2'><input type="checkbox" name="7_6" value="7_6" /> DT300</span>
+                              </div>
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" style="text-align: center;">
+                                <span class='pl2'><input type="checkbox" name="7_6" value="7_6" /> DT340</span>
+                              </div>
+                          </div>
+                      </div>
+                           
+                  
+                  
+  
+                     <div class='test'><input type="checkbox" name="7_6" value="7_6" /> GV55</div>
+                     <div class='test'><input type="checkbox" name="7_5" value="7_5" /> FM1120</div>
+                     <div class='test'> <input type="checkbox" name="7_4" value="7_4" /> FMA120</div>
+                     <div class='test'><input type="checkbox" name="7_5" value="7_5" /> DT312</div>
+                     <div class='test'><input type="checkbox" name="7_6" value="7_6" /> DT350</div>
+                      
+                       <div class='test'><input type="checkbox" name="7_6" value="7_6" /> DT340C</div>
+                       <div class='test'><input type="checkbox" name="7_6" value="7_6" /> DT340</div>
+                       <div class='test'><input type="checkbox" name="7_6" value="" /> DT300</div>
+                       <div class='test'><input type="checkbox" name="7_4" value="7_4" /> FM5300</div>
+                       
+   -->
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("رقم المسلسل") }}</th>
+                        <th style="text-align: right; width:80% ;">{{doc.gps_serial_number2}}</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("رقم هويه الجهاز")}}</th>
+                        <th style="text-align: right; width:80% ;">{{doc.gps_series}}</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("ملحقات استشعار")}}</th>
+                        <th style="text-align: right; width:80% ;" style="text-align:right">
+                            {% if doc.installation_accessories%}
+                            {% for row in doc.installation_accessories%}
+                            <span>{{row.accessories or row.accessories_name}}</span> {{" . "}}
+                            {% endfor %}
+
+                            {%endif%}
+
+
+                            <!--   {%if item  %}
+                             {{item.accessories}}
+                          {%endif%}-->
+                            <!--
+                  <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <div class=''><input type="checkbox" name="7_6" value="7_6" /> RFID</div>
+                              </div>
+                              
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" style="font-size:11px;font-weight: bold;">
+                               <input type="checkbox" name="7_6" value="7_6" /> Temperature
+                              </div>
+                              
+                               <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" >
+                               <input type="checkbox" name="7_6" value="7_6" /> Door
+                              </div>
+                              
+                               <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3" style="font-size:10px;font-weight: bold;">
+                               <input type="checkbox" name="7_6" value="7_6" > Panic Button
+                              </div>
+                              
+                              <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" style="font-size:10px;font-weight: bold;">
+                                  <span class=''><input type="checkbox" name="7_6" value="7_6" /> Relay</span>
+                                  </div>
+                          </div>
+                          
+                   
+                          
+                          <div class="row">
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"  style=" text-align: left;font-size:11px;font-weight: bold;">
+                               <span ><input type="checkbox"  /> Fuel Level</span>
+                              </div>
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"  style=" text-align: left;font-size:10px;font-weight: bold;" >
+                               <input type="checkbox"  /> Hands Free\Mic
+                              </div>
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"  style=" text-align: left;font-size:10px;font-weight: bold;">
+                               <input type="checkbox"  />  Fuel Cap
+                              </div>
+                              <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"  style="text-align: left; font-size:10px;font-weight: bold;">
+                               <span ><input type="checkbox"  /> Garmin</span>
+                              </div>
+                          </div>
+                     
+                      </div>
+                      -->
+                            <!--
+                            <div class='test'><input type="checkbox" name="7_4" value="7_4" /> Panic Button</div>
+                            <div class='test'><input type="checkbox" name="7_5" value="7_5" /> Door</div>
+                            <div class='test'><input type="checkbox" name="7_6" value="7_6" /> Temperature</div>
+                            <div class='test'> <input type="checkbox" name="7_4" value="7_4" /> RFID</div>
+                            <div class='test'><input type="checkbox" name="7_5" value="7_5" /> Relay</div>
+                            <div class='test'><input type="checkbox" name="7_6" value="7_6" /> Fuel Cap</div>
+                            <div class='test'> <input type="checkbox" name="7_6" value="7_6" /> Hands Free\Mic</div>
+                            <div class='test'> <input type="checkbox" name="7_6" value="7_6" /> Fuel Level </div>
+                            <div class='test'><input type="checkbox" name="7_6" value="7_6" /> Garmin</div>
+                          -->
+
+
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--بيانات شريحة الاتصالات-->
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <span>{{_("6-بيانات شريحة الاتصالات:")}}</span>
+        </div>
+        <div class="col-xs-12" dir="rtl">
+            <table id="tb1" dir="rtl">
+                <thead>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("مزود الخدمه")}}</th>
+                        <th style="text-align: right; width:20% ;">
+                            {%if doc.sim_provider == "Etisalat" %}
+                            <div class="check"></div>
+                            {% endif %}
+                            {%if doc.sim_provider != "Etisalat" %}
+                            <input type="checkbox" name="7_6" />
+                            {% endif %}
+                                                        {{_("اتصالات")}}</th>
+                        <th style="text-align: right; width:20% ;">
+
+                            {%if doc.sim_provider == "Orange" %}
+                            <div class="check"></div>
+                            {% endif %}
+                            {%if doc.sim_provider != "Orange" %}
+                            <input type="checkbox" name="7_7"  />
+                            {% endif %}
+                            
+                            {{_("موبينيل ")}}
+                        </th>
+                        <th style="text-align: right; width:20% ;">
+                            {%if doc.sim_provider == "Vodafone" %}
+                            <div class="check"></div>
+                            {% endif %}
+                            {%if doc.sim_provider != "Vodafone" %}
+                            <input type="checkbox" name="7_8" />
+                            {% endif %}
+                            
+                            {{_("فودافون")}}</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right; width:20% ;">{{_("رقم GSM الشريحه")}}</th>
+                        <th style="text-align: right; width:20% ;">{{doc.sim_number}}</th>
+                        <th style="text-align: right; width:20% ;">{{_("مسلسل")}}</th>
+                        <th style="text-align: right; width:20% ;">{{doc.sim_serial}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!--
+     <div  id="header-html" class="hidden-pdf" >
+            <div class="print-heading">
+              <div class="row">
+              <div class="col-xs-4" >
+                  <div dir="rtl" style="text-align: rigth;"><strong>{{_("المصرية لخدمات التتبع وتكنولوجيا المعلومات")}}</strong></div>
+              </div>
+              <div class="col-xs-3">
+                  <div dir="rtl"><img/><img src="{{company.company_logo}}" width="90%" alt="" /></div>
+              </div>
+      
+              <div class="col-xs-5 bg-warning">
+                  <div dir="rtl" style="text-align: right;"><strong>{{_("Egyptian Co. For Tracking & Information Technology")}}</strong></div>
+              </div>
+          </div>
+        </div>
+     </div> -->
+    <div class="row ">
+        <!--رأي العميل-->
+        <div id="hed1" class="col-xs-12" dir="rtl">
+            <ul id="" class="with-bullets">
+                <li><span>{{_("( تملاء بمعرفة العميل )")}}</span></li>
+            </ul>
+            <ul id="" class="no-bullets">
+                <li> <span>{{_("راي العميل :")}}</span></li>
+                <li>
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                                <div style="margin-top:10px">مدي رضاء العميل عن الخدمة المقدمة</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                                <table id="tb3" style="float:left;margin-top:5px">
+                                    <tr>
+                                        <td><input type="checkbox" name="7_6" value="7_6" /> <span>{{_("ممتاز")}}</span>
+                                        </td>
+                                        <td><input type="checkbox" name="7_6" value="7_6" /> <span>{{_("جيد")}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:5px">
+                            <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6" style="">
+                                <table id="tb4">
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6">
+                                <div id="hed1">ملاحظات</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- header 2-->
+
+    <div class="row" style="margin-top:2px">
+        <div class="col-xs-12" dir="rtl"> الموافقة والتوقيع</div>
+
+        <div class="col-xs-12" dir="rtl">
+            <table dir="rtl">
+                <tr>
+                    <td style="width:50%">{{_("مركز الخدمة المعتمد: جيبكو للنظم الأمنية المتخصصة")}}</td>
+                    <td rowspan=3></td>
+                    <td style="width:35%">{{_(" الشـــركةالمســتلمـة")}}:{{doc.customer}}</td>
+                </tr>
+                <tr>
+                    <td>{{_("اسم مسئول التركـيب:")}}</td>
+                    <td>{{_(" اسم مسئول الاستلام:")}}</td>
+                </tr>
+                <tr>
+                    <td>{{_("التوقـــــيع:")}}</td>
+                    <td>{{_("التوقـــــيع:")}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--
+  <div class="row">
+      <div  id="hed1"class="col-xs-12" dir="rtl"> 
+          {{_("التوقـــــيع")}}
+    </div>
+    <div  id="hed1"class="col-xs-12" dir="rtl"> 
+      {{_("التوقــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــيع")}}
+    </div>
+      </div>-->
+
+
+</div> <!---end home-->

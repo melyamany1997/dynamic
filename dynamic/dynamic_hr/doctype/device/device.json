@@ -1,0 +1,200 @@
+{
+ "actions": [],
+ "autoname": "field:device_name",
+ "creation": "2020-11-18 13:01:58.741405",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "device_details_section",
+  "device_name",
+  "company",
+  "shift",
+  "column_break_6",
+  "status",
+  "is_active",
+  "auto_calculate_attendance",
+  "connection_details_section",
+  "ip",
+  "port",
+  "column_break_12",
+  "password",
+  "last_connection_details",
+  "last_log_date",
+  "last_connection",
+  "last_error"
+ ],
+ "fields": [
+  {
+   "default": "192.168.1.201",
+   "fieldname": "ip",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "IP",
+   "reqd": 1
+  },
+  {
+   "default": "4370",
+   "fieldname": "port",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Port",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "password",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_log_date",
+   "fieldtype": "Datetime",
+   "label": "Last Log Date"
+  },
+  {
+   "fieldname": "last_connection",
+   "fieldtype": "Data",
+   "label": "Last Connection",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_error",
+   "fieldtype": "Text",
+   "label": "Last Error",
+   "read_only": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_calculate_attendance",
+   "fieldtype": "Check",
+   "label": "Auto Calculate Attendance"
+  },
+  {
+   "default": "Disconnected",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Connected\nDisconnected",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shift",
+   "fieldtype": "Link",
+   "label": "Shift",
+   "options": "Shift Type"
+  },
+  {
+   "fieldname": "device_details_section",
+   "fieldtype": "Section Break",
+   "label": "Device Details"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "connection_details_section",
+   "fieldtype": "Section Break",
+   "label": "Connection Details"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_connection_details",
+   "fieldtype": "Section Break",
+   "label": "Last Connection Details"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "device_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Device Name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "links": [],
+ "modified": "2022-08-14 10:49:33.230555",
+ "modified_by": "Administrator",
+ "module": "Dynamic HR",
+ "name": "Device",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "device_name",
+ "track_changes": 1
+}

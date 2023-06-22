@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "20b9d239-3b3f-45de-b9fc-3d728fa5c10d",
+		"name": "weh-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15332251"
+	},
+	"item": [
+		{
+			"name": "craete_customer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token a4a68aa9bfe6d57:be8eab026a29999",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer_name\" :\"test create\" ,\n    \"remote_id\" :\"1\"\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.201.18/api/method/dynamic.weh.api.customer",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"201",
+						"18"
+					],
+					"path": [
+						"api",
+						"method",
+						"dynamic.weh.api.customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "craete_customer _2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token be8eab026a29999:a4a68aa9bfe6d57",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer_name\" :\"test create\" ,\n    \"remote_id\" :\"1\"\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.201.18/api/method/dynamic.weh.api.customer",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"201",
+						"18"
+					],
+					"path": [
+						"api",
+						"method",
+						"dynamic.weh.api.customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_consumables",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token a4a68aa9bfe6d57:be8eab026a29999",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n   \n    \"remote_id\" : \"1\",\n    \"date\" :  \"2023-02-2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.201.18/api/method/dynamic.weh.api.get_consumables",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"201",
+						"18"
+					],
+					"path": [
+						"api",
+						"method",
+						"dynamic.weh.api.get_consumables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_consumables _2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token be8eab026a29999:a4a68aa9bfe6d57",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n   \n    \"remote_id\" : \"1\",\n    \"date\" :  \"2023-02-2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.201.18/api/method/dynamic.weh.api.get_consumables",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"201",
+						"18"
+					],
+					"path": [
+						"api",
+						"method",
+						"dynamic.weh.api.get_consumables"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

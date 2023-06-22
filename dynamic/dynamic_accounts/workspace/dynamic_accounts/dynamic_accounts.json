@@ -1,0 +1,83 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2021-12-02 09:57:54.276749",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends": "Accounting",
+ "extends_another_page": 1,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Dynamic Accounts",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pay and Receive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pay Document",
+   "link_to": "Pay Document",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Receipt Document",
+   "link_to": "Receipt Document",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trial Balance",
+   "link_to": "Trial Balance 2",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-01-30 12:54:31.302277",
+ "modified_by": "Administrator",
+ "module": "Dynamic Accounts",
+ "name": "Dynamic Accounts",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "restrict_to_domain": "Dynamic Accounts",
+ "shortcuts": [
+  {
+   "doc_view": "List",
+   "label": "Pay Document",
+   "link_to": "Pay Document",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Receipt Document",
+   "link_to": "Receipt Document",
+   "type": "DocType"
+  }
+ ]
+}

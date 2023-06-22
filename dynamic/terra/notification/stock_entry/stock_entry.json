@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2022-12-21 15:51:24.192631",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Stock Entry",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Matial transfier",
+ "modified": "2022-12-21 15:53:19.490576",
+ "modified_by": "abdallah.shokri@gmail.com",
+ "module": "terra",
+ "name": "Stock Entry",
+ "owner": "abdallah.shokri@gmail.com",
+ "recipients": [
+  {
+   "receiver_by_document_field": "",
+   "receiver_by_role": "Stock User"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "",
+ "sender_email": "",
+ "set_property_after_alert": "purpose",
+ "subject": "{{doc.name}}"
+}

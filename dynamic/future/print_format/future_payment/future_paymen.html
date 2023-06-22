@@ -1,0 +1,83 @@
+
+<div class="container-fluid" dir="auto">
+    <div class="row">
+                <div class="col-sm-12 col-xs-12" style="text-align: right;font-size: 17px;"><b>{{_("شركة فيوتشر وود لتجارة وتصنيع الأخشاب")}}</b></div>
+        </div>
+    <div class="row mt-5">
+        <div class="col-sm-5 col-xs-5" style="text-align: right;font-size: 17px;"><b>
+            {%-if doc.payment_type== 'تسلم' or doc.payment_type== 'Receive' -%}
+            {{_("أذن استلام ")}}
+            {%else%}
+            {{_("أذن صرف")}}
+            {%-endif-%}
+        </b></div>
+        <div class="col-sm-3 col-xs-3" style="text-align: center;"><b>{{doc.name}}</b></div>
+                
+        <div class="col-sm-4 col-xs-4 mt-1" style=""> 
+            <img  src="/assets/dynamic/images/future.jpeg" width="300" height="100">
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-xs-8" style="text-align: right;font-size: 17px;"></div>
+        <div class="col-sm-2 col-xs-2" style="text-align: right;font-size: 17px;">{{_("قرش")}}</div>
+        <div class="col-sm-2 col-xs-2" style="text-align: right;font-size: 17px;">{{_("جنيه")}}</div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{_("التاريخ")}}</b></div>
+        <div class="col-sm-5 col-xs-5  mt-1" style="text-align: right;">
+            <b style="font-weight: bold;font-size: 18px;">{{doc.posting_date}}</b>
+            </div>
+        <div class="col-sm-4 col-xs-4  mt-1"  style="text-align: center;font-size: 15px;padding-left: 50px;">{{doc.paid_amount}}</div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{_("أستلمنا من السيد")}}</b></div>
+        <div class="col-sm-5 col-xs-5  mt-1" style="text-align: right;">
+            <b style="font-weight: bold;font-size: 18px;">{{doc.party_name}}</b>
+            </div>
+        <div class="col-sm-4 col-xs-4  mt-1"  style="text-align: center;font-size: 15px;padding-left: 50px;"></div>
+    </div>
+
+     <div class="row mt-1">
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{_(" مبلغ وقدرة ")}}</b></div>
+        <div class="col-sm-5 col-xs-5  mt-1" style="text-align: right;">
+            <b style="font-weight: bold;font-size: 14px;">{{frappe.utils.money_in_words(doc.paid_amount,doc.currency) }}
+            </b>
+            </div>
+        <div class="col-sm-4 col-xs-4  mt-1"  style="text-align: center;font-size: 15px;padding-left: 50px;"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-sm-5 col-xs-5  mt-1" style="text-align: right;">
+        </div>
+        <div class="col-sm-4 col-xs-4  mt-1"  style="text-align: center;font-size: 15px;padding-left: 50px;"></div>
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{_("  المستلم ")}}</b></div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-sm-5 col-xs-5  mt-1" style="text-align: right;">
+        </div>
+        <div class="col-sm-4 col-xs-4  mt-1"  style="text-align: center;font-size: 15px;padding-left: 50px;"></div>
+        <div class="col-sm-3 col-xs-3  mt-1"><b>{{"....." * 7}}</b></div>
+    </div>
+
+
+     
+
+
+
+</div>
+
+helllooooooooooooooooo
+
+
+
+
+
+
+
+
+
+
+

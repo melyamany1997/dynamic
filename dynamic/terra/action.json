@@ -1,0 +1,16 @@
+[
+    {
+      "type": "Indoor",
+      "action_name": "Visit"
+    },
+    {
+        "type": "Indoor",
+        "action_name": "Call"
+    },
+    {
+        "type": "Out door",
+        "action_name": "Out"
+    }
+
+]
+  

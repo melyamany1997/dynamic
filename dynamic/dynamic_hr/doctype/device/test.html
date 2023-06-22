@@ -1,0 +1,154 @@
+
+<style>
+    *{
+      font-family: sans-serif;
+
+    }
+.flex-container {
+  display: flex;
+}
+
+.flex-container > div {
+  margin-right: 100px;
+  padding: 2px;
+  
+}
+
+table, td, th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+</style>
+ <div id="header-html" class="visible-pdf">
+    <div id="dleft" style="width:100%;margin-top: 0px;padding: 0px" dir="rtl">
+    <div style="float:right;">
+        <p style="float:right;margin-top: 1px">الهيئه القوميه للتامين الاجتماعي</p><br>
+     
+        <p style="float:right;margin-top: 1px">منطقه/{{ doc.region}}</p><br>
+        <p style="float:right;margin-right: 1px;margin-top: -7px">مكتب/{{ doc.insurance_office}}</p>
+    </div>
+    
+    <div style="float:left;margin-top: 1px">
+        <p>نموزج رقم (9) قرار وزاري رقم (00) لسنه 0000</p><br>
+        <p> رقم المنشاة: <span style="border: 1px black solid;padding: 2px;padding-right:20px;padding-left: 20px ">{{doc.insurance_number}}</span></p>
+    </div>
+</div>
+ <br>
+ <br>
+ <br>
+ <hr>
+<div style="width:100%;">
+    <center><h2>طلب اشتراك منشاة</h2></center>
+    <center><h2>او اخطار تعديل بيانات المؤمن عليهم و اجورهم في  /  /  20</h2></center>
+    
+</div>
+<br>
+<div style="width: 100%" dir="rtl">
+   <div>
+    <p style="display: inline;margin-right: 20px">اسم المنشاه/ {{ doc.organization_name }}</p>
+    <p style="display: inline;margin-right: 100px">المالك /المدير المسئول:{{ doc.responsible_owner }}</p>
+    <p style="display: inline;margin-right: 100px">الشكل القانوني للمنشاة:{{ doc.organizationlegalform}}</p>
+   </div>
+
+    <div class="flex-container" dir="rtl" >
+  <div style="margin-right: 10px">عنوان المنشاة/{{doc.address}}</div>
+  <div style="margin-right: 100px;"> الشياخه/القريه:---------</div>
+  <div style="margin-right: 100px;">القسم/المركز:------------</div>
+
+</div> 
+
+ <div class="flex-container" dir="rtl" >
+  <div style="margin-right: 10px">نسبه تامين المرض:------------</div>
+  <div> تاريخ بدا النسبه: &nbsp;&nbsp; / &nbsp;&nbsp; / </div>
+  <div> نسبه تامين الاصابه:------------</div>
+   <div>تاريخ بدا النسبه : &nbsp;&nbsp; /&nbsp;&nbsp;  / </div>
+</div> 
+
+ <div class="flex-container" dir="rtl" >
+  <div style="margin-right: 10px">تاريخ التوقف /الاستمرار : &nbsp;&nbsp;/&nbsp;&nbsp;/</div>
+  <div style="margin-right: 5px;"> سبب التوقف :-------------</div>
+   <div style="margin-right: 5px;">بدا النشاط :--------------</div>
+   <div>رقم التسجيل الضريبي للمنشاة:--------------</div>
+</div> 
+
+</div>
+</div>
+
+<table dir="rtl">
+    <tr height="10px">
+        <th rowspan="2">الرقم التاميني</th>
+        <th rowspan="2">الموظف</th>
+        <th rowspan="2">الرقم القومي</th>
+        <th  colspan="3">تاريخ الالتحاق</th>
+        <th rowspan="2">اجر الاشتراك التاميني</th>
+        <th rowspan="2">الاجر الشامل</th>
+    </tr>
+        <tr>
+        
+        <th>يوم</th>
+         <th>شهر</th>
+          <th>سنه</th>
+      
+    </tr>
+
+            {% set count = namespace(value=0) %}
+            {% set total = [0] %}
+            {%- for row in get_jinja_data(doc) -%}
+            {% set list1 = (row.employee_joined_data|string).split('-') %}
+          
+            {% set count.value = count.value + 1 %}
+             {% set _ = total.append(total.pop() + row.insurance_salary|int) %}
+          <tr>
+            <td>{{row.insurancenumber}}</td>
+            <td>{{row.arabic_name}}</td>
+            <td>{{row.empid}}</td>
+            <td>{{list1[2]}}</td>
+            <td>{{list1[1]}}</td>
+             <td>{{list1[0]}}</td>
+            <td>{{row.insurance_salary}}</td>
+            <td>{{row.basic_salary}}</td>
+          </tr>
+       
+        {%- endfor -%}
+</table>
+ <div id="footer-html" class="visible-pdf">
+     <div class="flex-container" dir="rtl">
+      <div style="margin-right: 10px">اقر انا </div>
+      <div style="margin-right: 100px;">بصفتي </div>
+      <div style="margin-right: 100px;"> بان جميع المؤمن عليهم {{count.value}}  عاملا</div>
+    </div> 
+
+     <div class="flex-container" dir="rtl">
+      <div style="margin-right: 10px">وان اجور الشهر الحالي الاساسيه {{ total[0] }}</div>
+      <div style="margin-right: 100px;">وان جميع البيانات الوارده بهذه الاستماره وملحقاتها صحيحه .</div>
+      <div style="margin-right: 100px;"> (الاجر الشامل لحساب اشتراكات التامين الصحي)</div>
+    </div> 
+
+     <div class="flex-container" dir="rtl">
+      <div style="margin-right: 10px">صاحب العمل او المدير المسئول &nbsp;/&nbsp;&nbsp;  -------------------------------------------------</div>
+      <div>روجعت بيانات هذا الطلب علي طلبات المومن عليهم ووجد صحيحه.</div>
+    </div> 
+
+     <div class="flex-container" dir="rtl">
+      <div style="margin-right: 10px">تحرير في :&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;/</div>
+      <div style="margin-right: 50px;">مستلم الااستماره / ------------------------</div>
+      <div style="margin-right: 10px;"> تم مراجعه التوقيع بمعرفتي/---------------------</div>
+    </div> 
+
+     <div class="flex-container" dir="rtl">
+      <div style="margin-right: 10px">اخصائي الاشتراك/---------------------------</div>
+      <div style="margin-right: 10px;">سجل اليا/  --------------------------------</div>
+      <div style="margin-right: 10px;">روجع اليا /--------------------------------</div>
+      
+      
+      
+      
+     
+      <p class="text-center small page-number visible-pdf">Page <span class="page"></span> of <span class="topage"></span></p>
+</div>
+</div> 

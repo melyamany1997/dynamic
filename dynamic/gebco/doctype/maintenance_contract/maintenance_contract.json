@@ -1,0 +1,249 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CON-{customer}-{YY}-{MM}-{#####}",
+ "creation": "2022-03-21 13:48:33.273277",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "from_date",
+  "visits",
+  "customer",
+  "column_break_4",
+  "to_date",
+  "number_of_visits",
+  "customer_name",
+  "column_break_8",
+  "completed_visits",
+  "remainig_visits",
+  "status",
+  "contract_details_section",
+  "contract_value",
+  "week_end_with_extra_fees",
+  "include_spare_parts",
+  "column_break_10",
+  "guarantee",
+  "week_end_extra_fees",
+  "account",
+  "column_break_12",
+  "number_of_cars",
+  "cost_center",
+  "warehouse",
+  "column_break_17",
+  "get_customer_cars",
+  "cars_section",
+  "cars_plate_numbers",
+  "amended_from",
+  "sales_invoice"
+ ],
+ "fields": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visits",
+   "fieldtype": "Select",
+   "label": "Visits",
+   "options": "Limited\nUnLimited"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "To Date",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.visits == \"Limited\"",
+   "fieldname": "number_of_visits",
+   "fieldtype": "Int",
+   "label": "Number Of Visits",
+   "mandatory_depends_on": "eval:doc.visits == \"Limited\""
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Read Only",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "contract_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Details"
+  },
+  {
+   "fieldname": "contract_value",
+   "fieldtype": "Float",
+   "label": "Contract Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "guarantee",
+   "fieldtype": "Select",
+   "label": "guarantee",
+   "options": "GEBCO\nAgent"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_cars",
+   "fieldtype": "Float",
+   "label": "Number Of Cars"
+  },
+  {
+   "fieldname": "cars_section",
+   "fieldtype": "Section Break",
+   "label": "Cars"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "cars_plate_numbers",
+   "fieldtype": "Table",
+   "label": "Cars",
+   "options": "Cars Plate Numbers",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "completed_visits",
+   "fieldtype": "Read Only",
+   "label": "Completed Visits"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "remainig_visits",
+   "fieldtype": "Read Only",
+   "label": "Remainig Visits"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Maintenance Contract",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.number_of_cars > 0 && doc.customer !=null",
+   "fieldname": "get_customer_cars",
+   "fieldtype": "Button",
+   "label": "GET Customer Cars"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Waiting\nOn Progress\nCompleted",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "week_end_with_extra_fees",
+   "fieldtype": "Check",
+   "label": "Week end with extra fees"
+  },
+  {
+   "depends_on": "eval:doc.week_end_with_extra_fees ==1",
+   "fieldname": "week_end_extra_fees",
+   "fieldtype": "Data",
+   "label": "Week End Extra Fees",
+   "mandatory_depends_on": "eval:doc.week_end_with_extra_fees ==1"
+  },
+  {
+   "fieldname": "include_spare_parts",
+   "fieldtype": "Select",
+   "label": "include Spare Parts ",
+   "options": "YES\nNO"
+  },
+  {
+   "depends_on": "eval:doc.include_spare_parts == 'YES'",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "label": "Account",
+   "mandatory_depends_on": "eval:doc.include_spare_parts == 'YES'",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.include_spare_parts == 'YES'",
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "mandatory_depends_on": "eval:doc.include_spare_parts == 'YES'",
+   "options": "Warehouse"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-03-24 16:31:34.618235",
+ "modified_by": "Administrator",
+ "module": "gebco",
+ "name": "Maintenance Contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

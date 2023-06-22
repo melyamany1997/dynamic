@@ -1,0 +1,288 @@
+<!-- {%- from "templates/print_formats/standard_macros.html" import add_header -%} -->
+
+{% set customer_doc = frappe.get_doc("Customer",doc.customer)%}
+{% if doc.contact_person%}
+{% set cst_contact = frappe.get_doc("Contact",doc.contact_person) %}
+{%else%}
+{% set cst_contact = 0 %}
+{%endif%}
+
+
+
+{% if letter_head and not no_letterhead -%}
+{% if print_settings.repeat_header_footer %}
+   <br>  <div class="letter-head">{{ letter_head }}</div>
+{%- endif %}{%- endif %}
+
+
+<div class="container-fluid">
+    <!-- header -->
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" style=""> 
+            <img height="70" src="/assets/dynamic/images/kmina_logo.jpg" width="300">
+        </div>
+        <div class="col-sm-6 col-xs-6  mt-1">
+            <div class="row">
+                <div class="col-12" style="text-align: center;"><b style="border-left: 5px solid yellow;padding-left: 4px;">{{_("Tax Invoice")}}</b></div>
+                <div class="col-sm-8 col-xs-8">{{_("Invoice Number")}}</div>
+                <div class="col-sm-4 col-xs-4">{{_("Invoice Date")}}</div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-xs-8"><b>{{doc.name}}</b></div>
+                <div class="col-sm-4 col-xs-4"><b>{{ doc.posting_date }}</b></div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+    <div class="row mt-1">
+        <div class="col-sm-6 col-xs-6 mt-1" >  
+            <!--<b>Kmena</b> <br>-->
+            <span>KMENA FZ-LLC <br>FOP0003<br>
+                Compass Building,<br>
+                Al Shohada Road,<br>
+                AL Hamra Industrial Zone-FZ,<br>
+                Ras Al Khaimah, United Arab Emirates
+            </span>
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >  
+           <b> {{_("Customer.")}}:</b> <br>
+            <b>{{doc.customer}}</b><br>
+            <b>Contact :<br>{{doc.contact_display}}</b>
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <!--<span>KMENA FZ-LLC <br>FOP0003<br>-->
+            <!--    Compass Building,<br>-->
+            <!--    Al Shohada Road,<br>-->
+            <!--    AL Hamra Industrial Zone-FZ,<br>-->
+            <!--    Ras Al Khaimah, United Arab Emirates-->
+            <!--</span>-->
+             Inco term: <b>{{doc.inco_term}}</b><br>
+            Shipment Type	: <b>{{doc.shipment_type}}</b>
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            {{_("Customer Purchase Order")}} <br>
+            <b> {{doc.po_no or ""}}</b>
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <span>
+            </span>
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <!--{{_("Your Contact")}} <br>-->
+            <!--{%if cst_contact and cst_contact.phone_nos[0]%}-->
+            <!--<b>{{cst_contact.phone_nos[0].phone}}</b>-->
+            <!--{%else%}-->
+            <!--<b>{{_("None")}}</b>-->
+            <!--{%endif%}-->
+           
+            <!--<hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 1px;">-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <!--{{_("Billing Address")}}<br>-->
+            <!--{{doc.customer_address}}-->
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            {{_("Delivery Address")}} <br>
+            <b>{{doc.customer}}  <br>{{doc.customer_address}}</b>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 mt-1" >
+            <!--{{_("TRN")}}:<br>-->
+        </div>
+        <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+    </div>
+
+    <!--<div class="row">-->
+    <!--    <div class="col-sm-3 col-xs-3 mt-1" >-->
+    <!--        {{_("HS Code")}}:<br>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-3 col-xs-3 mt-1" >-->
+    <!--        {{customer_doc.hs_code or ""}}:<br>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-3 col-xs-3 mt-1" >-->
+    <!--        {{_("SDFA REgistration No")}}:<br>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-3 col-xs-3 mt-1" >-->
+    <!--        {{customer_doc.sdfa_code or ""}}:<br>-->
+    <!--    </div>-->
+    <!--</div>-->
+
+
+
+    <!-- items -->
+    <div class="row mt-1">
+        <div class=" col-sm-12 col-xs-12 margin-top margin-bottom" >
+            <table class="table table-bordered table-condensed" style="border-collapse:collapse;">
+                <tr>
+                    <th>NO</th>
+                    <th style="width:30%">Item Name</th>
+                    <th>QTY</th>
+                    <th>UOM</th>
+                    <th>Unit Price</th>
+                    <th>Amount</th>
+                    <th>Batch</th>
+                    <th>Mfg.dt</th>
+                    <th>Expirt.dt</th>
+                    <th>HS</th>
+                    <!-- <th>سعر بعد الخصم</th>
+                    <th>الأجمالى</th> -->
+                </tr>
+                {% for item in doc.items %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.qty}}</td>
+                    <td>{{ item.uom}}</td>
+                    <td>{{ item.rate or 0}}</td>
+                    <td>{{ item.amount}}</td>
+                    <!-- <td>{{ item.price_list_rate or 0}}</td> -->
+                    <td>{{ item.batch_km or " "}}</td>
+                    <td>{{ item.manfacturing_date or ""}}</td>
+                    <td>{{ item.expiration_date or " "}}</td>
+                    <td>{{ item.hs_code or " "}}</td>
+                    <!-- <td>{{ item.amount }}</td> -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+
+    
+    
+    </div>
+    <!-- total -->
+    <div class="row">
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Payment Terms")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ doc.payment_terms_template}}
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Total Before Tax")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.total or 0,currency=doc.currency) }}
+            <!-- {{ doc.base_total }} -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Total Tax")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.total_taxes_and_charges or 0,currency=doc.currency) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{_("Discount")}}:
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ doc.additional_discount_percentage }} %
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+                 In Words: <br>
+            {{doc.in_words}}
+        </div>
+
+        <div style="border-left: 5px solid yellow;" class="col-sm-3 col-xs-3 mt-1" >
+           <b>{{_("Grand Total")}}:</b> 
+
+
+        </div>
+        <div class="col-sm-3 col-xs-3 mt-1" >
+            {{ frappe.utils.fmt_money(doc.grand_total or 0,currency=doc.currency) }}
+        </div>
+
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            
+        </div>
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 mt-1" >
+            Terms: <br>
+            {{doc.terms}}
+        </div>
+
+        <!-- <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;"> -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 mt-1" style=""> 
+            <hr style="border: 1px solid #1aa3ff;border-radius: 1px;margin-top: 3px;">
+        </div>
+        <!--<div class="col-sm-6 col-xs-6 mt-1" style=""> -->
+        <!--<b>Tel.1 : +971 4575 4706</b> <br>-->
+        <!--<b>Tel.2 : +965 9606 5742</b> <br>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6 col-xs-6 mt-1" style=""> -->
+        <!--    <b>Email:</b> supplychain-ae@centralcircleco.com;<br>-->
+        <!--    info-ae@centralcircleco.com-->
+        <!--</div>           -->
+</div>
+</div>
+
+
+
+<!-- FOOTER -->
+<!--{% if print_settings.repeat_header_footer %}-->
+<!--<div id="footer-html" class="visible-pdf">-->
+<!--  {% if not no_letterhead and footer %}-->
+<!--  <div class="letter-head-footer">-->
+<!--    {{ footer }}-->
+<!--  </div>-->
+<!--  {% endif %}-->
+<!--  <p class="text-center small page-number visible-pdf">-->
+<!--    {{ _("Page {0} of {1}").format('<span class="page"></span>', '<span class="topage"></span>') }}-->
+<!--  </p>-->
+<!--</div>-->
+<!--{% endif %}-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

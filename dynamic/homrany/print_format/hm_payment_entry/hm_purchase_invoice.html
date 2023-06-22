@@ -1,0 +1,95 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<div style="direction: ltr !important;margin-top: 0%;">
+    <div id="header-html" class="hidden-pdf">
+        <img src="/assets/dynamic/images/hm_header.jpg" />
+    </div>
+    <!-- <div id="header-html" class="hidden-pdf margin-bottom"   style="margin-top: 2%;">
+        <div class="print-heading center" style="text-align: center;">
+            <h4>
+                <b>{{_("وثيقة دفع/تسلم")}}</b>
+            </h4>
+        </div>
+        padding-bottom: 10px;border-bottom-style: solid;
+        border-bottom-width: 3.1px;width: fit-content;
+    </div> -->
+    <div class="row">
+        <div class="col-xs-12 " style="text-align: center;font-size: large;text-underline-offset: 8px;text-decoration: underline;">
+            {%if doc.payment_type == "Recieve" %}
+            <b>{{_("وثيقة أستلام")}}</b>
+            {%else %}
+            <b>{{_(" وثيقة دفع")}}</b>
+            {%endif%}
+            
+        </div>
+    </div>
+    <div class="row">
+        <!-- <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">{{doc.name}}:{{_("رقم الفاتورة ")}}</div> -->
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{doc.payment_type}}:{{_("حالة الطلب")}}</p></div>
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{doc.party}}:{{_("الطرف المعني")}}</p></div>
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{doc.posting_date}}:{{_("تاريخ العملية")}}</p></div>
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{doc.mode_of_payment}}:{{_("طريقة الدفع")}}</p></div>
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{frappe.utils.fmt_money(doc.paid_amount,currency=doc.paid_from_account_currency or doc.paid_to_account_currency)}}:{{_("المبلغ المدفوع")}}</p>
+            </div>
+        <div class="col-xs-12" style="text-align: right;margin-bottom: 10px;font-size: 20px;">
+            <p>{{doc.name}}:{{_(" رقم السند")}}</p></div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;text-align: right;">
+        <div class="col-xs-12">
+            <table style="width: 100%;">
+                <tr>
+                    <!-- <td style="">{{_("ملاحظات")}}</td> -->
+                    <td style="">{{_("تخصيص")}}</td>
+                    <td style="">{{_("معلقة")}}</td>
+                    <!-- <td style="">{{_("رقم الفاتورة")}}</td> -->
+                    <!-- <td style="">{{_("تاريخ ألأستحقاق")}}</td> -->
+                    <td style="">{{_("الأسم")}}</td>
+                    <td style="">{{_("النوع")}}</td>
+
+
+                </tr>
+                {% for row in doc.references%}
+                <tr>
+                    <!-- <td style="">{{_("ملاحظات")}}</td> -->
+                    <td style="">{{frappe.utils.fmt_money(row.allocated_amount,currency=doc.paid_from_account_currency or doc.paid_to_account_currency)}}</td>
+                    <td style="">{{frappe.utils.fmt_money(row.outstanding_amount,currency=doc.paid_from_account_currency or doc.paid_to_account_currency)}}</td>
+                    <!-- <td style="">{{_("رقم الفاتورة")}}</td> -->
+                    <!-- <td style="">{{_("تاريخ ألأستحقاق")}}</td> -->
+                    <td style="">{{row.reference_name}}</td>
+                    <td style="">{{row.reference_doctype}}</td>
+
+
+                </tr>
+                {% endfor %}
+               
+            </table>
+        </div>
+    </div>
+
+    <!-- remark -->
+    <div class="row" style="margin-top: 10px;text-align: right;">
+        <div class="col-xs-4" style="float: right;">
+            <p>{{doc.remarks}}</p>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-xs-4" style="text-align: center;font-size: 20px;"><p>:{{_(" المحاسب")}}</p></div>
+        <div class="col-xs-4" style="text-align: center;font-size: 20px;"><p>:{{_(" المستلم")}}</p></div>
+        <div class="col-xs-4" style="text-align: center;font-size: 20px;"><p>:{{_(" المدير العام")}}</p></div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-xs-4" style="text-align: center;">{{"_"*20}}</div>
+        <div class="col-xs-4" style="text-align: center;">{{"_"*20}}</div>
+        <div class="col-xs-4" style="text-align: center;">{{"_"*20}}</div>
+    </div>
+
+    <div id="footer-html" class="">
+        <img src="/assets/dynamic/images/hm_footer.jpg" />
+    </div>
+</div>
